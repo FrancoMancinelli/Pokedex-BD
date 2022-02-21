@@ -8,18 +8,12 @@ import java.sql.Statement;
 
 import models.Usuario;
 
-public class UsersDAO {
-	
-	final String DB_URL = "jdbc:mysql://localhost/pokedex";
-	final String USER = "fran";
-	final String PASS = "#IltwwAmh3127";
+public class UsersDAO extends AbstractDAO{
 	
 	public void consulta() {
 		final String QUERY = "SELECT username, password FROM users";
 
 		try { 
-				 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		         Statement stmt = conn.createStatement();
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
 		            //Display values
@@ -36,8 +30,6 @@ public class UsersDAO {
 							"WHERE username = '" + usuario.getUsername() + "' AND " +
 							"password = '" + usuario.getPassword() + "'";
 		try { 
-			 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-	         Statement stmt = conn.createStatement();
 	         ResultSet rs = stmt.executeQuery(QUERY);		      
 	         return rs.next();
 	      } catch (SQLException e) {
@@ -51,8 +43,6 @@ public class UsersDAO {
 		final String INSERT = "INSERT INTO pokedex.users (username, password)"
 							+ " VALUES ('"+ usuario.getUsername() +"', '"+ usuario.getPassword() +"');";
 		try { 
-		 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		 Statement stmt = conn.createStatement();
 		 stmt.executeUpdate(INSERT);		      
 		} catch (SQLException e) {
 		 e.printStackTrace();

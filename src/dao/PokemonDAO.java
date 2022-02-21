@@ -9,11 +9,8 @@ import java.util.ArrayList;
 
 import models.Pokemon;
 
-public class PokemonDAO {
+public class PokemonDAO extends AbstractDAO{
 
-	final String DB_URL = "jdbc:mysql://localhost/pokedex";
-	final String USER = "fran";
-	final String PASS = "#IltwwAmh3127";
 	private TiposDAO tiposDAO;
 	
 	public PokemonDAO() {
@@ -25,8 +22,6 @@ public class PokemonDAO {
 				+ " FROM pokemones LIMIT 1";
 
 		try { 
-				 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		         Statement stmt = conn.createStatement();
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
 		            //Display values
@@ -51,8 +46,6 @@ public class PokemonDAO {
 				+ " FROM pokemones";
 		ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 		try { 
-				 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		         Statement stmt = conn.createStatement();
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
 		            //Display values
@@ -79,8 +72,6 @@ public class PokemonDAO {
 				+ "', '"+ p.getHabilidad() + "', '"+p.getTipo1().getId()
 				+"', '"+(p.getTipo2() != null ? String.valueOf(p.getTipo2().getId()) : "NULL") + "');";
 		try { 
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(INSERT);		      
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,8 +81,6 @@ public class PokemonDAO {
 	public void deletePokemon(Pokemon p) {
 		final String DELETE = "DELETE FROM pokemones WHERE numero = " + p.getNumero();
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(DELETE);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,11 +94,11 @@ public class PokemonDAO {
 				+ "altura = '"+p.getAltura()+"',\r\n"
 				+ "peso = '"+p.getPeso()+"',\r\n"
 				+ "categoria = '"+p.getCategoria()+"',\r\n"
-				+ "habilidad = '"+p.getHabilidad()+"' \r\n"
+				+ "habilidad = '"+p.getHabilidad()+"', \r\n"
+				+ "idTipo1 = '"+p.getTipo1().getId()+"', \r\n"
+				+ "idTipo2 = '"+(p.getTipo2() != null ? String.valueOf(p.getTipo2().getId()) : "NULL")+"' \r\n"
 				+ "WHERE numero = "+p.getNumero()+";";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(UPDATE);
 		} catch (SQLException e) {
 			e.printStackTrace();

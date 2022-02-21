@@ -313,12 +313,7 @@ public class PokedexView {
 				frmPokedex.dispose();
 			}
 		});
-		
-		btnConfig.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO Hacer el borrar usuario, cambiar usuario y cambiar contraseña
-			}
-		});
+
 		
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -12,9 +12,16 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import dao.UsersDAO;
+import models.Usuario;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class ConfigView {
 
 	private JFrame frame;
+	private JFrame pokedexFrame;
 	private JLabel lblPokedex;
 	private JButton btnCambiarContrasea;
 	private JButton btnBorrarCuenta;
@@ -22,14 +29,20 @@ public class ConfigView {
 	private JLabel lblBienvenida;
 	private JButton btnCambiarNombre;
 	private JPanel panelDeCambios;
-
+	private String username;
+	private int iduser;
+	private Usuario usuario;
+	private UsersDAO usuarioDAO;
 
 	/**
 	 * Create the application.
 	 */
-	public ConfigView() {
+	public ConfigView(String username, int id, JFrame pokedex) {
 		initialize();
-		frame.setVisible(true);
+		this.frame.setVisible(true);
+		this.iduser = id;
+		this.username = username;
+		this.pokedexFrame = pokedex;
 	}
 
 	/**
@@ -63,6 +76,11 @@ public class ConfigView {
 		frame.getContentPane().add(btnCambiarContrasea);
 		
 		btnBorrarCuenta = new JButton("Borrar Cuenta");
+		btnBorrarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnBorrarCuenta.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		btnBorrarCuenta.setBackground(new Color(255, 215, 0));
 		btnBorrarCuenta.setBounds(36, 370, 190, 54);
@@ -81,7 +99,14 @@ public class ConfigView {
 		frame.getContentPane().add(lblBienvenida);
 		
 		btnVolver = new JButton("Volver");
-		btnVolver.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		btnVolver.setBackground(Color.WHITE);
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				pokedexFrame.setVisible(true);
+			}
+		});
+		btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnVolver.setBorder(null);
 		btnVolver.setBounds(30, 37, 89, 33);
 		frame.getContentPane().add(btnVolver);

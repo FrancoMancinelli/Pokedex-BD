@@ -53,8 +53,8 @@ public class CrearView {
 	private PokemonDAO pokemonDAO;
 	private TiposDAO tiposDAO;
 	private JLabel lblSetTipo2;
-	private JComboBox cbTipo1;
-	private JComboBox cbTipo2;
+	private JComboBox<String> cbTipo1;
+	private JComboBox<String> cbTipo2;
 	private ArrayList<Tipos> tipos;
 
 	

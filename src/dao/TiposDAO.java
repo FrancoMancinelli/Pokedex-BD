@@ -10,19 +10,13 @@ import java.util.ArrayList;
 import models.Pokemon;
 import models.Tipos;
 
-public class TiposDAO {
-
-	final String DB_URL = "jdbc:mysql://localhost/pokedex";
-	final String USER = "fran";
-	final String PASS = "#IltwwAmh3127";
+public class TiposDAO extends AbstractDAO {
 	
 	public ArrayList<Tipos> getAll() {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos";
 		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
 		try { 
-				 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		         Statement stmt = conn.createStatement();
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
 		            //Display values
@@ -43,8 +37,6 @@ public class TiposDAO {
 				+ " FROM tipos WHERE id = " + idTipos;
 		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
 		try { 
-				 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		         Statement stmt = conn.createStatement();
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
 		            //Display values
