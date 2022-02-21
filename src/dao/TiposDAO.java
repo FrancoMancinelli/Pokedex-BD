@@ -11,7 +11,7 @@ import models.Pokemon;
 import models.Tipos;
 
 public class TiposDAO extends AbstractDAO {
-	
+
 	public ArrayList<Tipos> getAll() {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos";
@@ -30,8 +30,8 @@ public class TiposDAO extends AbstractDAO {
 		      }
 				return tipos;
 	}
-	
-	
+
+
 	public Tipos get(int idTipos) {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos WHERE id = " + idTipos;

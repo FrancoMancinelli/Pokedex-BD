@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 import models.Pokemon;
 
-public class PokemonDAO extends AbstractDAO{
+public class PokemonDAO extends AbstractDAO {
 
 	private TiposDAO tiposDAO;
-	
+
 	public PokemonDAO() {
 		this.tiposDAO = new TiposDAO();
 	}
-	
+
 	public Pokemon consultaFirst() {
 		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad"
 				+ " FROM pokemones LIMIT 1";
@@ -39,7 +39,7 @@ public class PokemonDAO extends AbstractDAO{
 		      }
 				return null;
 	}
-	
+
 	public ArrayList<Pokemon> getAll() {
 		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad"
 				+ ", idTipo1, idTipo2"
@@ -65,7 +65,7 @@ public class PokemonDAO extends AbstractDAO{
 		      }
 				return pokemones;
 	}
-	
+
 	public void insertPokemon(Pokemon p) {
 		final String INSERT = "INSERT INTO pokedex.pokemones (numero, nombre, altura, peso, categoria, habilidad, idTipo1, idTipo2)"
 				+ " VALUES ('0', '"+ p.getNombre() +"', '"+ p.getAltura() +"', '"+ p.getPeso() +"', '" + p.getCategoria()
@@ -77,7 +77,7 @@ public class PokemonDAO extends AbstractDAO{
 			e.printStackTrace();
 		} 
 	}
-	
+
 	public void deletePokemon(Pokemon p) {
 		final String DELETE = "DELETE FROM pokemones WHERE numero = " + p.getNumero();
 		try {
@@ -86,7 +86,7 @@ public class PokemonDAO extends AbstractDAO{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void updatePokemon(Pokemon p) {
 		final String UPDATE = "UPDATE pokedex.pokemones\r\n"
 				+ "SET\r\n"
@@ -94,9 +94,7 @@ public class PokemonDAO extends AbstractDAO{
 				+ "altura = '"+p.getAltura()+"',\r\n"
 				+ "peso = '"+p.getPeso()+"',\r\n"
 				+ "categoria = '"+p.getCategoria()+"',\r\n"
-				+ "habilidad = '"+p.getHabilidad()+"', \r\n"
-				+ "idTipo1 = '"+p.getTipo1().getId()+"', \r\n"
-				+ "idTipo2 = '"+(p.getTipo2() != null ? String.valueOf(p.getTipo2().getId()) : "NULL")+"' \r\n"
+				+ "habilidad = '"+p.getHabilidad()+"' \r\n"
 				+ "WHERE numero = "+p.getNumero()+";";
 		try {
 			stmt.executeUpdate(UPDATE);

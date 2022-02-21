@@ -1,4 +1,4 @@
- package dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,9 @@ import java.sql.Statement;
 
 import models.Usuario;
 
-public class UsersDAO extends AbstractDAO{
-	
+public class UsersDAO extends AbstractDAO {
+
+
 	public void consulta() {
 		final String QUERY = "SELECT username, password FROM users";
 
@@ -24,7 +25,7 @@ public class UsersDAO extends AbstractDAO{
 		         e.printStackTrace();
 		      } 
 	}
-	
+
 	public boolean login(Usuario usuario) {
 		final String QUERY = "SELECT username, password FROM users "+
 							"WHERE username = '" + usuario.getUsername() + "' AND " +
@@ -37,8 +38,8 @@ public class UsersDAO extends AbstractDAO{
 	      } 
 			return false;
 	}
-	
-	
+
+
 	public void registro(Usuario usuario) {
 		final String INSERT = "INSERT INTO pokedex.users (username, password)"
 							+ " VALUES ('"+ usuario.getUsername() +"', '"+ usuario.getPassword() +"');";
@@ -49,6 +50,6 @@ public class UsersDAO extends AbstractDAO{
 		} 
 
 	}
-	
+
 
 }

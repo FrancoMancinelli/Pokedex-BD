@@ -152,7 +152,7 @@ public class PokedexView {
 		lblPokemonName = new JTextField("");
 		lblPokemonName.setFont(new Font("Verdana", Font.BOLD, 24));
 		lblPokemonName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPokemonName.setBounds(35, 12, 208, 28);
+		lblPokemonName.setBounds(35, 8, 208, 35);
 		panelFondoPokemon.add(lblPokemonName);
 		
 		lblPokemonNumber = new JLabel("");
@@ -313,7 +313,7 @@ public class PokedexView {
 				frmPokedex.dispose();
 			}
 		});
-
+		
 		
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
