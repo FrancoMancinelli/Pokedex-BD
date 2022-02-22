@@ -260,7 +260,6 @@ public class CrearView {
 	}
 
 	private void fillTipos() {
-		//cbTipo2.addItem("N/A");
 		for(Tipos t : tipos1) {
 			cbTipo1.addItem(t.getNombre());
 		}

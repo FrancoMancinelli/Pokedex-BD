@@ -16,7 +16,9 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import dao.PokemonDAO;
+import dao.TiposDAO;
 import models.Pokemon;
+import models.Tipos;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -25,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class PokedexView {
 
@@ -67,6 +70,12 @@ public class PokedexView {
 	private JLabel lblDatoTipo1;
 	private JLabel lblDatoTipo2;
 	private JLabel lblPokedex;
+	private JComboBox<String> cbTipo1Act;
+	private JComboBox<String> cbTipo2Act;
+	private ArrayList<Tipos> tipos1;
+	private ArrayList<Tipos> tipos2;
+	private TiposDAO tipos1DAO;
+	private TiposDAO tipos2DAO;
 	
 
 	
@@ -79,6 +88,10 @@ public class PokedexView {
 		this.pagina = pagina;
 		this.pokemonDAO = new PokemonDAO();
 		this.pokemones = pokemonDAO.getAll();
+		this.tipos1DAO = new TiposDAO();
+		this.tipos2DAO = new TiposDAO();
+		this.tipos1 = tipos1DAO.getAllTipo1();
+		this.tipos2 = tipos2DAO.getAllTipo2();
 		initialize();
 		printPokemon();
 		
@@ -168,31 +181,31 @@ public class PokedexView {
 		panelFondoPokemon.add(lblPokemonImg);
 		
 		separator = new JSeparator();
-		separator.setBounds(35, 50, 435, 28);
+		separator.setBounds(35, 50, 435, 14);
 		panelFondoPokemon.add(separator);
 		
 		lbltxtAltura = new JLabel("Altura:");
 		lbltxtAltura.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		lbltxtAltura.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltxtAltura.setBounds(279, 66, 85, 14);
+		lbltxtAltura.setBounds(279, 67, 85, 14);
 		panelFondoPokemon.add(lbltxtAltura);
 		
 		lblDatoDeAltura = new JTextField("");
 		lblDatoDeAltura.setForeground(new Color(128, 128, 128));
 		lblDatoDeAltura.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
-		lblDatoDeAltura.setBounds(361, 65, 97, 18);
+		lblDatoDeAltura.setBounds(361, 67, 97, 20);
 		panelFondoPokemon.add(lblDatoDeAltura);
 		
 		lbltxtPeso = new JLabel("Peso:");
 		lbltxtPeso.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		lbltxtPeso.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltxtPeso.setBounds(289, 91, 75, 28);
+		lbltxtPeso.setBounds(289, 94, 75, 28);
 		panelFondoPokemon.add(lbltxtPeso);
 		
 		lblDatoDePeso = new JTextField("");
 		lblDatoDePeso.setForeground(new Color(128, 128, 128));
 		lblDatoDePeso.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
-		lblDatoDePeso.setBounds(361, 97, 97, 18);
+		lblDatoDePeso.setBounds(361, 100, 97, 20);
 		panelFondoPokemon.add(lblDatoDePeso);
 		
 		lbltxtCategoria = new JLabel("Categoria:");
@@ -210,13 +223,13 @@ public class PokedexView {
 		lbltxtHabilidad = new JLabel("Habilidad:");
 		lbltxtHabilidad.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		lbltxtHabilidad.setHorizontalAlignment(SwingConstants.CENTER);
-		lbltxtHabilidad.setBounds(262, 169, 102, 27);
+		lbltxtHabilidad.setBounds(262, 165, 102, 27);
 		panelFondoPokemon.add(lbltxtHabilidad);
 		
 		lblDatoDeHabilidad = new JTextField("");
 		lblDatoDeHabilidad.setForeground(new Color(128, 128, 128));
 		lblDatoDeHabilidad.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
-		lblDatoDeHabilidad.setBounds(361, 173, 97, 20);
+		lblDatoDeHabilidad.setBounds(361, 169, 97, 20);
 		panelFondoPokemon.add(lblDatoDeHabilidad);
 		
 		lblTipo1 = new JLabel("Tipo 1:");
@@ -238,6 +251,14 @@ public class PokedexView {
 		lblDatoTipo2 = new JLabel("");
 		lblDatoTipo2.setBounds(361, 244, 97, 25);
 		panelFondoPokemon.add(lblDatoTipo2);
+		
+		cbTipo1Act = new JComboBox<String>();
+		cbTipo1Act.setBounds(361, 207, 97, 25);
+		panelFondoPokemon.add(cbTipo1Act);
+		
+		cbTipo2Act = new JComboBox<String>();
+		cbTipo2Act.setBounds(361, 244, 97, 27);
+		panelFondoPokemon.add(cbTipo2Act);
 		
 		btnAnterior = new JButton("<");
 		btnAnterior.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -299,6 +320,7 @@ public class PokedexView {
 		btnCancelarAct.setBorder(null);
 		btnCancelarAct.setBackground(new Color(0, 51, 204));
 		
+		fillTipos();
 		
 		frmPokedex.setVisible(true);
 		
@@ -364,6 +386,7 @@ public class PokedexView {
 			public void actionPerformed(ActionEvent e) {
 				updatePokemon();
 				setActualizarOFF();
+				printPokemon();
 				
 			}
 		});
@@ -376,8 +399,8 @@ public class PokedexView {
 	}
 	
 	private void printPokemon() {
-		if(pokemones.size() > 0) {
 		Pokemon p = pokemones.get(pagina);
+		if(pokemones.size() > 0) {
 		lblPokemonName.setText(p.getNombre());
 		lblPokemonNumber.setText("N°"+p.getNumero());
 		lblDatoDeAltura.setText(String.valueOf(p.getAltura()));
@@ -390,6 +413,7 @@ public class PokedexView {
 			lblDatoTipo2.setText(p.getTipo2().getNombre()); 
 		}
 		lblPokemonImg.setIcon(pokemones.get(pagina).getImagen2());
+
 	}
 	
 	private void printSiguiente() {
@@ -417,6 +441,8 @@ public class PokedexView {
 		lblDatoDeHabilidad.setText("");
 		btnBorrar.setVisible(false);
 		btnActualizar.setVisible(false);
+		cbTipo1Act.setVisible(false);
+		cbTipo2Act.setVisible(false);
 	}
 	
 	private void setActualizarOFF() {
@@ -432,6 +458,10 @@ public class PokedexView {
 		btnCancelarAct.setVisible(false);
 		btnSiguiente.setEnabled(true);
 		btnAnterior.setEnabled(true);
+		cbTipo1Act.setVisible(false);
+		cbTipo2Act.setVisible(false);
+		lblDatoTipo1.setVisible(true);
+		lblDatoTipo2.setVisible(true);
 	}
 	
 	private void setActualizarON() {
@@ -447,6 +477,16 @@ public class PokedexView {
 		btnCancelarAct.setVisible(true);
 		btnSiguiente.setEnabled(false);
 		btnAnterior.setEnabled(false);
+		cbTipo1Act.setVisible(true);
+		cbTipo2Act.setVisible(true);
+		lblDatoTipo1.setVisible(false);
+		lblDatoTipo2.setVisible(false);
+		int a = (pokemones.get(pagina).getTipo1().getId());
+		int b = (pokemones.get(pagina).getTipo2().getId());
+		
+		cbTipo1Act.setSelectedIndex(pokemones.get(pagina).getTipo1().getId()-1);
+		cbTipo2Act.setSelectedIndex(pokemones.get(pagina).getTipo2().getId()-1);
+
 	}
 	
 	private void updatePokemon() {
@@ -456,6 +496,20 @@ public class PokedexView {
 		p.setPeso(Double.parseDouble(lblDatoDePeso.getText()));
 		p.setCategoria(lblDatoDeCategoria.getText());
 		p.setHabilidad(lblDatoDeHabilidad.getText());
+		Tipos t1 = new Tipos(cbTipo1Act.getSelectedIndex()+1, cbTipo1Act.getSelectedItem().toString());
+		Tipos t2 = new Tipos(cbTipo2Act.getSelectedIndex()+1, cbTipo2Act.getSelectedItem().toString());
+		p.setTipo1(t1);
+		p.setTipo2(t2);
 		pokemonDAO.updatePokemon(p);
+	}
+	
+	private void fillTipos() {
+		for(Tipos t : tipos1) {
+			cbTipo1Act.addItem(t.getNombre());
+		}
+		
+		for(Tipos t : tipos2) {
+			cbTipo2Act.addItem(t.getNombre());
+		}
 	}
 }
