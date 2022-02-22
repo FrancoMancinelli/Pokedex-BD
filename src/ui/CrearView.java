@@ -166,9 +166,10 @@ public class CrearView {
 		frame.getContentPane().add(panel);
 
 		btnVolverPkx = new JButton("Volver");
-		btnVolverPkx.setFont(new Font("Verdana", Font.PLAIN, 14));
+		btnVolverPkx.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnVolverPkx.setBackground(new Color(255, 255, 255));
-		btnVolverPkx.setBounds(21, 11, 95, 23);
+		btnVolverPkx.setBounds(10, 17, 89, 23);
+		btnVolverPkx.setBorder(null);
 		panel.add(btnVolverPkx);
 
 		panel_1 = new JPanel();

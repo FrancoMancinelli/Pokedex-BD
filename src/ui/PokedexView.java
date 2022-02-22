@@ -86,25 +86,17 @@ public class PokedexView {
 		this.frmLoginView = LoginView;
 		this.username = username;
 		this.pagina = pagina;
-		this.pokemonDAO = new PokemonDAO();
-		this.pokemones = pokemonDAO.getAll();
-		this.tipos1DAO = new TiposDAO();
-		this.tipos2DAO = new TiposDAO();
-		this.tipos1 = tipos1DAO.getAllTipo1();
-		this.tipos2 = tipos2DAO.getAllTipo2();
-		initialize();
-		printPokemon();
-		
+		initialize();		
 	}
 
 	/**
 	 * Inicializa el contenido del frame.
 	 */
 	public void initialize() {
-		
 		setUIComponents();
 		setListeners();
 		setActualizarOFF();
+		printPokemon();
 		
 	}
 	
@@ -112,6 +104,14 @@ public class PokedexView {
 	 * Configura la interfaz gráfica de la ventana
 	 */
 	private void setUIComponents() {
+		
+		this.pokemonDAO = new PokemonDAO();
+		this.pokemones = pokemonDAO.getAll();
+		this.tipos1DAO = new TiposDAO();
+		this.tipos2DAO = new TiposDAO();
+		this.tipos1 = tipos1DAO.getAllTipo1();
+		this.tipos2 = tipos2DAO.getAllTipo2();
+		
 		frmPokedex = new JFrame();
 		frmPokedex.getContentPane().setBackground(Color.DARK_GRAY);
 		frmPokedex.setTitle("Pokedex - Men\u00FA");
@@ -245,10 +245,12 @@ public class PokedexView {
 		panelFondoPokemon.add(lblTipo2);
 		
 		lblDatoTipo1 = new JLabel("");
+		lblDatoTipo1.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
 		lblDatoTipo1.setBounds(361, 207, 97, 25);
 		panelFondoPokemon.add(lblDatoTipo1);
 		
 		lblDatoTipo2 = new JLabel("");
+		lblDatoTipo2.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
 		lblDatoTipo2.setBounds(361, 244, 97, 25);
 		panelFondoPokemon.add(lblDatoTipo2);
 		
@@ -354,7 +356,6 @@ public class PokedexView {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.setVisible(false);
 				new CrearView(frmPokedex, username);
-
 			}
 		});
 		
@@ -362,7 +363,7 @@ public class PokedexView {
 			public void actionPerformed(ActionEvent e) {
 				int confirmar = JOptionPane.showConfirmDialog(btnBorrar,
 						"¿Estás seguro de que deseas borrar este Pokemon?");
-				if (confirmar == 0) { // Quiere borrar
+				if (confirmar == 0) { // Confirma borrar
 					pokemonDAO.deletePokemon(pokemones.get(pagina));
 					pokemones.remove(pokemones.get(pagina));
 					if (pokemones.size() > 0) {
@@ -378,7 +379,6 @@ public class PokedexView {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setActualizarON();
-				//JOptionPane.showMessageDialog(btnActualizar, "Esta opción se encuentra en desarrollo. Disuclpe las molestias");
 			}
 		});
 		
@@ -429,7 +429,7 @@ public class PokedexView {
 		if(pagina < 0) {
 			pagina = pokemones.size() - 1;
 		}
-			printPokemon();
+		printPokemon();
 	}
 	
 	private void printVacio() {
@@ -481,12 +481,8 @@ public class PokedexView {
 		cbTipo2Act.setVisible(true);
 		lblDatoTipo1.setVisible(false);
 		lblDatoTipo2.setVisible(false);
-		int a = (pokemones.get(pagina).getTipo1().getId());
-		int b = (pokemones.get(pagina).getTipo2().getId());
-		
 		cbTipo1Act.setSelectedIndex(pokemones.get(pagina).getTipo1().getId()-1);
 		cbTipo2Act.setSelectedIndex(pokemones.get(pagina).getTipo2().getId()-1);
-
 	}
 	
 	private void updatePokemon() {

@@ -112,8 +112,8 @@ public class RegistroView {
 
 		btnVolver = new JButton("Volver");
 		btnVolver.setBackground(new Color(255, 255, 255));
-		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnVolver.setBounds(32, 23, 97, 23);
+		btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnVolver.setBounds(10, 17, 89, 23);
 		panel.add(btnVolver);
 
 		panel_1 = new JPanel();
