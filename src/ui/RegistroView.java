@@ -13,6 +13,7 @@ import models.Usuario;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JPanel;
@@ -146,37 +147,7 @@ public class RegistroView {
 	private void setListeners() {
 		btnRegistrarseReg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String usuario = textUsuarioReg.getText();
-				String passwd1 = new String (pFldContraseña1.getPassword());
-				String passwd2 = new String (pFldContraseña2.getPassword());
-
-				if (!usuario.isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) {
-					if(usuario.length() > 3 && usuario.length() < 11) {
-						if(passwd1.equals(passwd2)) { //Comprueba que la clave introducida sea la misma
-							if(passwd1.length() > 3 && passwd1.length() <= 15) {
-								Usuario u = new Usuario(0, usuario, passwd1);
-								try {
-									usuarioDAO.registro(u);
-									JOptionPane.showMessageDialog(btnRegistrarseReg, "Te has registrado con éxito");
-									frmRegistro.dispose();
-									new LoginView();
-								} catch (Exception e1) {
-									JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre de usuario ya existe");
-								}
-							} else {
-								JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  La contraseña debe tener al menos 4 caracteres y máximo 16");
-							}
-						} else {
-							JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  Las contraseñas no coinciden");
-						}
-					} else {
-						JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre debe tener al menos 4 caracteres y máximo 12");
-					}
-				} else {
-					JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! - Rellena todos los campos");
-
-				}
-
+				realizarRegistro();
 			}
 		});
 
@@ -186,5 +157,59 @@ public class RegistroView {
 				frmRegistro.dispose();
 			}
 		});
+		
+	}
+	
+	public boolean checkSpaces(String s) {
+		int index = s.indexOf(' ');
+		if(index != -1)
+			return true;
+		return false;
+	}
+	
+	public void realizarRegistro() {
+		UsersDAO uDAO = new UsersDAO();
+		String usuario = textUsuarioReg.getText();
+		String passwd1 = new String (pFldContraseña1.getPassword());
+		String passwd2 = new String (pFldContraseña2.getPassword());
+
+		if (!usuario.isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) {
+			if(!uDAO.usuariosExistente(usuario)) {
+				if(usuario.length() > 3 && usuario.length() < 11) {
+					if(!checkSpaces(usuario)) {
+						if(passwd1.equals(passwd2)) { //Comprueba que la clave introducida sea la misma
+							if(!checkSpaces(passwd1)) {
+								if(passwd1.length() > 3 && passwd1.length() <= 15) {
+									Usuario u = new Usuario(0, usuario, passwd1);
+									try {
+										usuarioDAO.registro(u);
+										JOptionPane.showMessageDialog(btnRegistrarseReg, "Te has registrado con éxito");
+										frmRegistro.dispose();
+										new LoginView();
+									} catch (Exception e1) {
+										JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  Algo no salio bien D:");
+									}
+								} else {
+									JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  La contraseña debe tener al menos 4 caracteres y máximo 16");
+								}
+							} else {
+								JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  La constraseña no puede estar compuesto por espacios");
+							}
+						} else {
+							JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  Las contraseñas no coinciden");
+						}
+					} else {
+						JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre no puede estar compuesto por espacios");
+					}
+				} else {
+					JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre debe tener al menos 4 caracteres y máximo 12");
+				}
+			} else {
+				JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! - El nombre de usuario ya existe");
+			}
+		} else {
+			JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! - Rellena todos los campos");
+
+		}
 	}
 } //CIERRE CLASE
