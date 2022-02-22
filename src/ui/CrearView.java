@@ -47,11 +47,14 @@ public class CrearView {
 	private JPanel panel_1_1;
 	private JLabel lblPokedex;
 	private PokemonDAO pokemonDAO;
-	private TiposDAO tiposDAO;
+	private TiposDAO tipos1DAO;
+	private TiposDAO tipos2DAO;
 	private JLabel lblSetTipo2;
 	private JComboBox<String> cbTipo1;
 	private JComboBox<String> cbTipo2;
-	private ArrayList<Tipos> tipos;
+	private ArrayList<Tipos> tipos1;
+	private ArrayList<Tipos> tipos2;
+
 
 
 
@@ -62,8 +65,11 @@ public class CrearView {
 		this.pokemonDAO = new PokemonDAO();
 		this.PokedexView = PokedexView;
 		this.username = username;
-		this.tiposDAO = new TiposDAO();
-		this.tipos = tiposDAO.getAll();
+		this.tipos1DAO = new TiposDAO();
+		this.tipos2DAO = new TiposDAO();
+		this.tipos1 = tipos1DAO.getAllTipo1();
+		this.tipos2 = tipos2DAO.getAllTipo2();
+
 		initialize();
 	}
 
@@ -236,12 +242,11 @@ public class CrearView {
 			try {
 				Pokemon p = new Pokemon(0, textFldSetNombre.getText(), alt, pes, textFldSetCategoria.getText(), textFldSetHabilidad.getText());
 				// Sacar el valor de los tipos de los comboboxes
-				Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex() - 1);
+				Tipos tipo1 = tipos1.get(cbTipo1.getSelectedIndex());
 				p.setTipo1(tipo1);
-				if(cbTipo1.getSelectedIndex() != 0) {
-					Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex() - 1);
-					p.setTipo2(tipo2);
-				}
+				Tipos tipo2 = tipos2.get(cbTipo2.getSelectedIndex());
+				p.setTipo2(tipo2);
+				
 
 				pokemonDAO.insertPokemon(p);
 				new PokedexView(username, PokedexView, 0);
@@ -255,11 +260,13 @@ public class CrearView {
 	}
 
 	private void fillTipos() {
-		cbTipo2.addItem("Ninguno");
-		for(Tipos t : tipos) {
+		//cbTipo2.addItem("N/A");
+		for(Tipos t : tipos1) {
 			cbTipo1.addItem(t.getNombre());
+		}
+		
+		for(Tipos t : tipos2) {
 			cbTipo2.addItem(t.getNombre());
-
 		}
 	}
 }

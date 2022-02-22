@@ -12,7 +12,7 @@ import models.Tipos;
 
 public class TiposDAO extends AbstractDAO {
 
-	public ArrayList<Tipos> getAll() {
+	public ArrayList<Tipos> getAllTipo1() {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos";
 		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
@@ -32,10 +32,49 @@ public class TiposDAO extends AbstractDAO {
 	}
 
 
-	public Tipos get(int idTipos) {
+	public Tipos getTipo1(int idTipos) {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos WHERE id = " + idTipos;
 		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
+		try { 
+		         ResultSet rs = stmt.executeQuery(QUERY);		      
+		         while(rs.next()){
+		            //Display values
+		        	 	var id = rs.getInt("id");
+		        	 	var nombre = rs.getString("nombre");
+		        	 	Tipos t = new Tipos(id, nombre);
+		        	 	return t;
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }
+				return null;
+	}
+	
+	public ArrayList<Tipos> getAllTipo2() {
+		final String QUERY = "SELECT id, nombre"
+				+ " FROM tipos2";
+		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
+		try { 
+		         ResultSet rs = stmt.executeQuery(QUERY);		      
+		         while(rs.next()){
+		            //Display values
+		        	 	var id = rs.getInt("id");
+		        	 	var nombre = rs.getString("nombre");
+		        	 	Tipos t = new Tipos(id, nombre);
+		        	 	tipos.add(t);
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }
+				return tipos;
+	}
+
+
+	public Tipos getTipo2(int idTipos) {
+		final String QUERY = "SELECT id, nombre"
+				+ " FROM tipos2 WHERE id = " + idTipos;
+		ArrayList<Tipos> tipos2 = new ArrayList<Tipos>();
 		try { 
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){

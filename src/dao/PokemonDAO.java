@@ -60,8 +60,8 @@ public class PokemonDAO extends AbstractDAO {
 		        	 	String habilidad = rs.getString("habilidad");
 		        	 	String img = rs.getString("imagen");
 		        	 	Pokemon p = new Pokemon(numero, nombre, altura, peso, categoria, habilidad, img);
-		        	 	p.setTipo1(tiposDAO.get(rs.getInt("idTipo1")));
-		        	 	p.setTipo2(tiposDAO.get(rs.getInt("idTipo2")));
+		        	 	p.setTipo1(tiposDAO.getTipo1(rs.getInt("idTipo1")));
+		        	 	p.setTipo2(tiposDAO.getTipo2(rs.getInt("idTipo2")));
 		        	 	pokemones.add(p);
 		         }
 		      } catch (SQLException e) {
@@ -74,7 +74,7 @@ public class PokemonDAO extends AbstractDAO {
 		final String INSERT = "INSERT INTO pokedex.pokemones (numero, nombre, altura, peso, categoria, habilidad, idTipo1, idTipo2)"
 				+ " VALUES ('0', '"+ p.getNombre() +"', '"+ p.getAltura() +"', '"+ p.getPeso() +"', '" + p.getCategoria()
 				+ "', '"+ p.getHabilidad() + "', '"+p.getTipo1().getId()
-				+"', '"+(p.getTipo2() != null ? String.valueOf(p.getTipo2().getId()) : "NULL") + "');";
+				+"', '"+p.getTipo2().getId() + "');";
 		try { 
 			stmt.executeUpdate(INSERT);		      
 		} catch (SQLException e) {

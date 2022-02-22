@@ -47,9 +47,11 @@ public class LoginView {
 	 * Create the application.
 	 */
 	public LoginView() {
+		
+		this.usuarioDAO = new UsersDAO();
 		initialize();
 		frmPokedexMen.setVisible(true);	
-		this.usuarioDAO = new UsersDAO();
+
 		}
 
 
