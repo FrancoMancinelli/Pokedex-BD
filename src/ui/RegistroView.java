@@ -151,20 +151,27 @@ public class RegistroView {
 				String passwd2 = new String (pFldContraseña2.getPassword());
 
 				if (!usuario.isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) {
+					if(usuario.length() > 3 && usuario.length() < 11) {
 						if(passwd1.equals(passwd2)) { //Comprueba que la clave introducida sea la misma
-							
+							if(passwd1.length() > 3 && passwd1.length() <= 15) {
 								Usuario u = new Usuario(0, usuario, passwd1);
 								try {
 									usuarioDAO.registro(u);
 									JOptionPane.showMessageDialog(btnRegistrarseReg, "Te has registrado con éxito");
 									frmRegistro.dispose();
 									new LoginView();
-							} catch (Exception e1) {
-								JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre de usuario ya existe");
+								} catch (Exception e1) {
+									JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre de usuario ya existe");
+								}
+							} else {
+								JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  La contraseña debe tener al menos 4 caracteres y máximo 16");
 							}
 						} else {
 							JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  Las contraseñas no coinciden");
 						}
+					} else {
+						JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! -  El nombre debe tener al menos 4 caracteres y máximo 12");
+					}
 				} else {
 					JOptionPane.showMessageDialog(btnRegistrarseReg, "ERR0R! - Rellena todos los campos");
 

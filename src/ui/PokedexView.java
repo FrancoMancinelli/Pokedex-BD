@@ -126,9 +126,9 @@ public class PokedexView {
 		panelRojoSuperior.setLayout(null);
 		
 		lblTituloPokedex = new JLabel("Pokedex");
-		lblTituloPokedex.setFont(new Font("Trebuchet MS", Font.BOLD, 28));
+		lblTituloPokedex.setFont(new Font("Trebuchet MS", Font.BOLD, 32));
 		lblTituloPokedex.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTituloPokedex.setBounds(230, 10, 187, 34);
+		lblTituloPokedex.setBounds(203, 10, 214, 34);
 		lblTituloPokedex.setForeground(Color.WHITE);
 		panelRojoSuperior.add(lblTituloPokedex);
 		
@@ -259,7 +259,7 @@ public class PokedexView {
 		panelFondoPokemon.add(cbTipo1Act);
 		
 		cbTipo2Act = new JComboBox<String>();
-		cbTipo2Act.setBounds(361, 244, 97, 27);
+		cbTipo2Act.setBounds(361, 244, 97, 25);
 		panelFondoPokemon.add(cbTipo2Act);
 		
 		btnAnterior = new JButton("<");
