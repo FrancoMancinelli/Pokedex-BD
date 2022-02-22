@@ -66,6 +66,7 @@ public class PokedexView {
 	private JLabel lblTipo2;
 	private JLabel lblDatoTipo1;
 	private JLabel lblDatoTipo2;
+	private JLabel lblPokedex;
 	
 
 	
@@ -76,10 +77,9 @@ public class PokedexView {
 		this.frmLoginView = LoginView;
 		this.username = username;
 		this.pagina = pagina;
-		
-		initialize();
 		this.pokemonDAO = new PokemonDAO();
 		this.pokemones = pokemonDAO.getAll();
+		initialize();
 		printPokemon();
 		
 	}
@@ -163,8 +163,8 @@ public class PokedexView {
 		panelFondoPokemon.add(lblPokemonNumber);
 		
 		lblPokemonImg = new JLabel();
-		lblPokemonImg.setBounds(75, 65, 128, 128);
-		//lblPokemonImg.setIcon(Almacen.pokemones.get(pagina).getImagen());
+		lblPokemonImg.setBounds(67, 80, 148, 152);
+		lblPokemonImg.setIcon(pokemones.get(pagina).getImagen2());
 		panelFondoPokemon.add(lblPokemonImg);
 		
 		separator = new JSeparator();
@@ -299,6 +299,7 @@ public class PokedexView {
 		btnCancelarAct.setBorder(null);
 		btnCancelarAct.setBackground(new Color(0, 51, 204));
 		
+		
 		frmPokedex.setVisible(true);
 		
 	}
@@ -388,6 +389,7 @@ public class PokedexView {
 		if(p.getTipo2() != null) 
 			lblDatoTipo2.setText(p.getTipo2().getNombre()); 
 		}
+		lblPokemonImg.setIcon(pokemones.get(pagina).getImagen2());
 	}
 	
 	private void printSiguiente() {

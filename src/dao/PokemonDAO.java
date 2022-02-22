@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import models.Pokemon;
 
 public class PokemonDAO extends AbstractDAO {
@@ -18,7 +20,7 @@ public class PokemonDAO extends AbstractDAO {
 	}
 
 	public Pokemon consultaFirst() {
-		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad"
+		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad, imagen"
 				+ " FROM pokemones LIMIT 1";
 
 		try { 
@@ -31,7 +33,8 @@ public class PokemonDAO extends AbstractDAO {
 		        	 	double peso = rs.getDouble("peso");
 		        	 	String categoria = rs.getString("categoria");
 		        	 	String habilidad = rs.getString("habilidad");
-		        	 	Pokemon p = new Pokemon(numero, nombre, altura, peso, categoria, habilidad);
+		        	 	String imagen = rs.getString("imagen");
+		        	 	Pokemon p = new Pokemon(numero, nombre, altura, peso, categoria, habilidad, imagen);
 		        	 	return p;
 		         }
 		      } catch (SQLException e) {
@@ -41,7 +44,7 @@ public class PokemonDAO extends AbstractDAO {
 	}
 
 	public ArrayList<Pokemon> getAll() {
-		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad"
+		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad, imagen"
 				+ ", idTipo1, idTipo2"
 				+ " FROM pokemones";
 		ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
@@ -55,7 +58,8 @@ public class PokemonDAO extends AbstractDAO {
 		        	 	double peso = rs.getDouble("peso");
 		        	 	String categoria = rs.getString("categoria");
 		        	 	String habilidad = rs.getString("habilidad");
-		        	 	Pokemon p = new Pokemon(numero, nombre, altura, peso, categoria, habilidad);
+		        	 	String img = rs.getString("imagen");
+		        	 	Pokemon p = new Pokemon(numero, nombre, altura, peso, categoria, habilidad, img);
 		        	 	p.setTipo1(tiposDAO.get(rs.getInt("idTipo1")));
 		        	 	p.setTipo2(tiposDAO.get(rs.getInt("idTipo2")));
 		        	 	pokemones.add(p);

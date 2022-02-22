@@ -14,13 +14,14 @@ public class Pokemon {
 	protected String categoria;
 	protected String habilidad;
 	protected ImageIcon imagen;
+	protected String imagen2;
 	protected Tipos tipo1;
 	protected Tipos tipo2;
 
 	
 	//Constructor
 	
-	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad, ImageIcon imagen) {
+	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
@@ -28,10 +29,10 @@ public class Pokemon {
 		this.peso = peso;
 		this.categoria = categoria;
 		this.habilidad = habilidad;
-		this.imagen = imagen;
+		this.imagen = new ImageIcon(Pokemon.class.getResource("/img/interrogacion.png"));
 	}
 	
-	public Pokemon(int numero, String nombre,  double altura, double peso, String categoria, String habilidad) {
+	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad,ImageIcon img) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
@@ -39,7 +40,22 @@ public class Pokemon {
 		this.peso = peso;
 		this.categoria = categoria;
 		this.habilidad = habilidad;
+		this.imagen = new ImageIcon(Pokemon.class.getResource("/img/interrogacion.png"));
 	}
+	
+
+
+	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad, String img) {
+		super();
+		this.numero = numero;
+		this.nombre = nombre;
+		this.altura = altura;
+		this.peso = peso;
+		this.categoria = categoria;
+		this.habilidad = habilidad;
+		this.imagen2 = img;
+	}
+	
 
 	public int getNumero() {
 		return numero;
@@ -126,7 +142,14 @@ public class Pokemon {
 		this.tipo2 = tipo2;
 	}
 	
-	
+		public ImageIcon getImagen2() {
+			ImageIcon img = new ImageIcon(Pokemon.class.getResource(""+imagen2));;
+		return img;
+	}
+
+	public void setImagen2(String imagen2) {
+		this.imagen2 = imagen2;
+	}
 	
 	
 }
