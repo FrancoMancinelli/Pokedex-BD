@@ -76,6 +76,7 @@ public class PokedexView {
 	private ArrayList<Tipos> tipos2;
 	private TiposDAO tipos1DAO;
 	private TiposDAO tipos2DAO;
+	private JLabel cesped;
 	
 
 	
@@ -261,6 +262,11 @@ public class PokedexView {
 		cbTipo2Act = new JComboBox<String>();
 		cbTipo2Act.setBounds(361, 244, 97, 25);
 		panelFondoPokemon.add(cbTipo2Act);
+		
+		cesped = new JLabel("");
+		cesped.setBounds(72, 197, 125, 35);
+		cesped.setIcon(new ImageIcon(PokedexView.class.getResource("/img/cesped.png")));
+		panelFondoPokemon.add(cesped);
 		
 		btnAnterior = new JButton("<");
 		btnAnterior.setFont(new Font("Tahoma", Font.BOLD, 15));

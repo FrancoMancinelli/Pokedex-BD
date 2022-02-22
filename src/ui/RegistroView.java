@@ -13,6 +13,8 @@ import models.Usuario;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -156,6 +158,30 @@ public class RegistroView {
 				loginView.setVisible(true);
 				frmRegistro.dispose();
 			}
+		});
+		
+		textUsuarioReg.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				 realizarRegistro();
+				}
+		});
+		
+		pFldContraseña1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				 realizarRegistro();
+				}
+		});
+		
+		pFldContraseña2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				 realizarRegistro();
+				}
 		});
 		
 	}
