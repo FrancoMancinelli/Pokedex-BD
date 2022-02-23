@@ -88,6 +88,18 @@ public class UsersDAO extends AbstractDAO {
 		}
 	}
 	
+	public void updatePassword(String pass, String user) {
+		final String UPDATE = "UPDATE pokedex.users\r\n"
+				+ "SET\r\n"
+				+ "password = '"+pass+"'\r\n"
+				+ "WHERE username = '"+user+"';";
+		try {
+			stmt.executeUpdate(UPDATE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int consultaID(String nombre) {
 		final String QUERY = "SELECT idusers FROM users WHERE username = '"+nombre+"'";
 

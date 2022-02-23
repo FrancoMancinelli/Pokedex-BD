@@ -402,7 +402,42 @@ public class ConfigView {
 	}
 	
 	public void confirmarCambioPass() {
-		
+		String passwdActual = new String (pwActualPassCont.getPassword());
+		String passwdNueva1 = new String (pwNewPass.getPassword());
+		String passwdNueva2 = new String (pwRepitePass.getPassword());
+		if(!passwdActual.isEmpty() && !passwdNueva1.isEmpty() && !passwdNueva2.isEmpty()) {
+			if(passwdNueva1.equals(passwdNueva2)) {
+				if(!passwdActual.equals(passwdNueva1)) {
+					if(passwdNueva1.length() >= 4 && passwdNueva1.length() <= 16) {
+						if(!checkSpaces(passwdNueva1)) {
+							if(passwdActual.equals(this.password)) {
+								int confirmar = JOptionPane.showConfirmDialog(btnBorrarCuenta,
+										"¿Estás seguro de que deseas guardar los cambios?");
+								if (confirmar == 0) { // Confirma borrar
+									JOptionPane.showMessageDialog(btnConfirmar, "Contraseña actualizada con éxito");
+									userDAO.updatePassword(passwdNueva1, username);
+									frame.dispose();
+									pokedex.dispose();
+									new PokedexView(username, frmLoginView, pagina, passwdNueva1);
+								}
+							} else {
+								JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  La contraseña actual es incorrecta");
+							}
+						} else {
+							JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  La constraseña no puede estar compuesto por espacios");
+						}
+					} else {
+						JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  La contraseña debe tener al menos 4 caracteres y máximo 16");
+					}
+				} else {
+					JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  La nueva contraseña es igual a la anterior");
+				}
+			} else {
+				JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  Las contraseñas nuevas no coinciden");
+			}
+		} else {
+			JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  Asegurate de rellenar todos los campos");
+		}
 	}
 	
 	public boolean checkSpaces(String s) {
