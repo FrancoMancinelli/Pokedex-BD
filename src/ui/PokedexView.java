@@ -77,16 +77,18 @@ public class PokedexView {
 	private TiposDAO tipos1DAO;
 	private TiposDAO tipos2DAO;
 	private JLabel cesped;
+	private String password;
 	
 
 	
 	/**
 	 * Create the application.
 	 */
-	public PokedexView(String username, JFrame LoginView, int pagina) {	
+	public PokedexView(String username, JFrame LoginView, int pagina, String password) {	
 		this.frmLoginView = LoginView;
 		this.username = username;
 		this.pagina = pagina;
+		this.password = password;
 		initialize();		
 	}
 
@@ -361,7 +363,7 @@ public class PokedexView {
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.setVisible(false);
-				new CrearView(frmPokedex, username);
+				new CrearView(frmPokedex, username, password);
 			}
 		});
 		
@@ -400,6 +402,13 @@ public class PokedexView {
 		btnCancelarAct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setActualizarOFF();
+			}
+		});
+		
+		btnConfig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPokedex.setVisible(false);
+				new ConfigView(frmPokedex, username, password);
 			}
 		});
 	}

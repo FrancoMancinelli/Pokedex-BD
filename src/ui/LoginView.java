@@ -205,7 +205,7 @@ public class LoginView {
 		boolean loginCorrecto = usuarioDAO.login(usuario);
 		if (loginCorrecto) {
 			JOptionPane.showMessageDialog(btnEntrar, "Login Correcto. Bienvenid@ "+username);
-			new PokedexView(username, frmPokedexMen, 0);
+			new PokedexView(username, frmPokedexMen, 0, password);
 			frmPokedexMen.setVisible(false);
 		} else {
 			JOptionPane.showMessageDialog(btnEntrar, "                                ERR0R 203 - Login Incorrecto.\nAsegurate de haber introducido correctamente el usuario y contraseña");

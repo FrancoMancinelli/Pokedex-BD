@@ -54,6 +54,7 @@ public class CrearView {
 	private JComboBox<String> cbTipo2;
 	private ArrayList<Tipos> tipos1;
 	private ArrayList<Tipos> tipos2;
+	private String password;
 
 
 
@@ -61,10 +62,11 @@ public class CrearView {
 	/**
 	 * Create the application.
 	 */
-	public CrearView(JFrame PokedexView, String username) {
+	public CrearView(JFrame PokedexView, String username, String password) {
 		this.pokemonDAO = new PokemonDAO();
 		this.PokedexView = PokedexView;
 		this.username = username;
+		this.password = password;
 		this.tipos1DAO = new TiposDAO();
 		this.tipos2DAO = new TiposDAO();
 		this.tipos1 = tipos1DAO.getAllTipo1();
@@ -252,7 +254,7 @@ public class CrearView {
 					
 	
 					pokemonDAO.insertPokemon(p);
-					new PokedexView(username, PokedexView, 0);
+					new PokedexView(username, PokedexView, 0, password);
 					frame.dispose();
 					JOptionPane.showMessageDialog(btnConfirmarCrear, "Pokemon añadido con éxito");
 				} catch (Exception e) {
