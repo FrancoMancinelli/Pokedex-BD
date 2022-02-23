@@ -234,29 +234,33 @@ public class CrearView {
 
 		double alt = Double.parseDouble(textFldSetAltura.getText());
 		double pes = Double.parseDouble(textFldSetPeso.getText());
+		PokemonDAO pDAO = new PokemonDAO();
 
 		if (textFldSetNombre.getText().isEmpty() || textFldSetPeso.getText().isEmpty() || 
 			textFldSetAltura.getText().isEmpty() || textFldSetCategoria.getText().isEmpty() || 
 			textFldSetHabilidad.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(btnConfirmarCrear, "ERR0R! - Rellena todos los campos");
-		} else {
-			try {
-				Pokemon p = new Pokemon(0, textFldSetNombre.getText(), alt, pes, textFldSetCategoria.getText(), textFldSetHabilidad.getText());
-				// Sacar el valor de los tipos de los comboboxes
-				Tipos tipo1 = tipos1.get(cbTipo1.getSelectedIndex());
-				p.setTipo1(tipo1);
-				Tipos tipo2 = tipos2.get(cbTipo2.getSelectedIndex());
-				p.setTipo2(tipo2);
-				
-
-				pokemonDAO.insertPokemon(p);
-				new PokedexView(username, PokedexView, 0);
-				frame.dispose();
-				JOptionPane.showMessageDialog(btnConfirmarCrear, "Pokemon añadido con éxito");
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(btnConfirmarCrear, "ERR0R! - La altura y peso deben ser decimales");
-
+		if(!pDAO.pokemonExistente(textFldSetNombre.getText())) {
+			} else {
+				try {
+					Pokemon p = new Pokemon(0, textFldSetNombre.getText(), alt, pes, textFldSetCategoria.getText(), textFldSetHabilidad.getText());
+					// Sacar el valor de los tipos de los comboboxes
+					Tipos tipo1 = tipos1.get(cbTipo1.getSelectedIndex());
+					p.setTipo1(tipo1);
+					Tipos tipo2 = tipos2.get(cbTipo2.getSelectedIndex());
+					p.setTipo2(tipo2);
+					
+	
+					pokemonDAO.insertPokemon(p);
+					new PokedexView(username, PokedexView, 0);
+					frame.dispose();
+					JOptionPane.showMessageDialog(btnConfirmarCrear, "Pokemon añadido con éxito");
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(btnConfirmarCrear, "ERR0R! - La altura y peso deben ser decimales");
+				}
 			}
+		} else {
+			JOptionPane.showMessageDialog(btnConfirmarCrear, "ERR0R! - El Pokemon ya existe");
 		}
 	}
 

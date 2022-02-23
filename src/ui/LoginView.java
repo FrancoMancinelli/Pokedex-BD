@@ -86,6 +86,7 @@ public class LoginView {
 		frmPokedexMen.getContentPane().add(lblNomUsuario);
 
 		textNomUsuario = new JTextField();
+		textNomUsuario.setFont(new Font("Verdana", Font.PLAIN, 16));
 		textNomUsuario.setBounds(305, 197, 144, 35);
 		frmPokedexMen.getContentPane().add(textNomUsuario);
 		textNomUsuario.setColumns(10);
@@ -97,6 +98,7 @@ public class LoginView {
 		frmPokedexMen.getContentPane().add(lblPassword);
 
 		pfilePassword = new JPasswordField();
+		pfilePassword.setFont(new Font("Verdana", Font.PLAIN, 16));
 		pfilePassword.setBounds(305, 243, 144, 35);
 		frmPokedexMen.getContentPane().add(pfilePassword);
 
@@ -105,7 +107,6 @@ public class LoginView {
 		btnEntrar.setBackground(new Color(0, 51, 204));
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setBounds(251, 289, 127, 39);
-		btnEntrar.setBorder(null);
 		frmPokedexMen.getContentPane().add(btnEntrar);
 
 		btnRegistrarse = new JButton("Registrate");
@@ -113,7 +114,6 @@ public class LoginView {
 		btnRegistrarse.setFont(new Font("Verdana", Font.BOLD, 18));
 		btnRegistrarse.setBackground(new Color(0, 51, 204));
 		btnRegistrarse.setBounds(225, 339, 176, 44);
-		btnRegistrarse.setBorder(null);
 		frmPokedexMen.getContentPane().add(btnRegistrarse);
 		
 		panelGrisDeco1 = new JPanel();

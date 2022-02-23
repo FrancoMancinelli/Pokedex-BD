@@ -106,4 +106,19 @@ public class PokemonDAO extends AbstractDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean pokemonExistente(String nombre) {
+		final String QUERY = "SELECT nombre FROM pokemones WHERE nombre = '" + nombre + "'";
+
+		try { 
+		         ResultSet rs = stmt.executeQuery(QUERY);		      
+		         while(rs.next()){
+		            //Display values		            
+		        	 return true;
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }
+		return false; 
+	}
 }
