@@ -3,12 +3,16 @@ package ui;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import dao.UsersDAO;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -49,6 +53,8 @@ public class ConfigView {
 	private JLabel lblPanelDe;
 	private JLabel lblConfiguraciones;
 	private int modo;
+	private JPanel panelSuperior;
+	private UsersDAO userDAO;
 	
 	/**
 	 * Create the application.
@@ -57,6 +63,7 @@ public class ConfigView {
 		this.pokedex = pokedex;
 		this.username = username;
 		this.password = password;
+		this.userDAO = new UsersDAO();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -78,16 +85,12 @@ public class ConfigView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		lblPokedex = new JLabel("");
-		lblPokedex.setIcon(new ImageIcon(ConfigView.class.getResource("/img/pokemon.png")));
-		lblPokedex.setBounds(188, 61, 256, 104);
-		frame.getContentPane().add(lblPokedex);
-		
 		btnCambiarNombre = new JButton("Cambiar Nombre");
 		btnCambiarNombre.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		btnCambiarNombre.setForeground(new Color(255, 255, 255));
 		btnCambiarNombre.setBackground(new Color(51, 102, 204));
 		btnCambiarNombre.setBounds(36, 205, 190, 54);
+		btnCambiarNombre.setBorder(null);
 		frame.getContentPane().add(btnCambiarNombre);
 		
 		btnCambiarContrasea = new JButton("Cambiar Password");
@@ -95,12 +98,14 @@ public class ConfigView {
 		btnCambiarContrasea.setForeground(new Color(255, 255, 255));
 		btnCambiarContrasea.setBackground(new Color(51, 102, 204));
 		btnCambiarContrasea.setBounds(36, 270, 190, 54);
+		btnCambiarContrasea.setBorder(null);
 		frame.getContentPane().add(btnCambiarContrasea);
 		
 		btnBorrarCuenta = new JButton("Borrar Cuenta");
 		btnBorrarCuenta.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		btnBorrarCuenta.setBackground(new Color(255, 215, 0));
 		btnBorrarCuenta.setBounds(36, 370, 190, 54);
+		btnBorrarCuenta.setBorder(null);
 		frame.getContentPane().add(btnBorrarCuenta);
 		
 		panelCambios = new JPanel();
@@ -109,11 +114,13 @@ public class ConfigView {
 		panelCambios.setLayout(null);
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Verdana", Font.BOLD, 12));
 		btnConfirmar.setBounds(212, 178, 100, 30);
 		btnConfirmar.setBackground(new Color(255, 215, 0));
 		panelCambios.add(btnConfirmar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Verdana", Font.BOLD, 12));
 		btnCancelar.setBounds(38, 178, 100, 30);
 		btnCancelar.setBackground(new Color(255, 215, 0));
 		panelCambios.add(btnCancelar);
@@ -131,7 +138,11 @@ public class ConfigView {
 		lblTextNombreActual.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		tfNombreActual = new JTextField();
+		tfNombreActual.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		tfNombreActual.setHorizontalAlignment(SwingConstants.CENTER);
+		tfNombreActual.setEditable(false);
 		tfNombreActual.setBounds(95, 32, 140, 25);
+		tfNombreActual.setBorder(null);
 		panelNombre.add(tfNombreActual);
 		tfNombreActual.setColumns(10);
 		
@@ -142,6 +153,8 @@ public class ConfigView {
 		lblTextNombreNuevo.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
 		
 		tfNombreNuevo = new JTextField();
+		tfNombreNuevo.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		tfNombreNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		tfNombreNuevo.setBounds(95, 90, 140, 25);
 		tfNombreNuevo.setBorder(null);
 		panelNombre.add(tfNombreNuevo);
@@ -155,10 +168,11 @@ public class ConfigView {
 		
 		pwActualPassName = new JPasswordField();
 		pwActualPassName.setBounds(177, 132, 140, 20);
+		pwActualPassName.setBorder(null);
 		panelNombre.add(pwActualPassName);
 		
 		panelContraseña = new JPanel();
-		panelContraseña.setBackground(Color.RED);
+		panelContraseña.setBackground(new Color(51, 102, 204));
 		panelContraseña.setBounds(10, 10, 327, 162);
 		panelCambios.add(panelContraseña);
 		panelContraseña.setLayout(null);
@@ -171,6 +185,7 @@ public class ConfigView {
 		
 		pwNewPass = new JPasswordField();
 		pwNewPass.setBounds(95, 32, 140, 25);
+		pwNewPass.setBorder(null);
 		panelContraseña.add(pwNewPass);
 		
 		lblTextActualPass = new JLabel("Contrase\u00F1a Actual:");
@@ -181,6 +196,7 @@ public class ConfigView {
 		
 		pwActualPassCont = new JPasswordField();
 		pwActualPassCont.setBounds(177, 132, 140, 20);
+		pwActualPassCont.setBorder(null);
 		panelContraseña.add(pwActualPassCont);
 		
 		lblRepiteContraseña = new JLabel("Repite Contrase\u00F1a:");
@@ -191,6 +207,7 @@ public class ConfigView {
 		
 		pwRepitePass = new JPasswordField();
 		pwRepitePass.setBounds(95, 90, 140, 25);
+		pwRepitePass.setBorder(null);
 		panelContraseña.add(pwRepitePass);
 		
 		panelBaseText = new JPanel();
@@ -211,13 +228,6 @@ public class ConfigView {
 		lblConfiguraciones.setBounds(0, 110, 327, 51);
 		panelBaseText.add(lblConfiguraciones);
 		
-		lblBienvenida = new JLabel("Bienvenido a la configuraci\u00F3n de usuario");
-		lblBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBienvenida.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblBienvenida.setForeground(new Color(255, 255, 255));
-		lblBienvenida.setBounds(109, 143, 440, 40);
-		frame.getContentPane().add(lblBienvenida);
-		
 		panelRojoSuperior = new JPanel();
 		panelRojoSuperior.setLayout(null);
 		panelRojoSuperior.setBackground(Color.RED);
@@ -232,10 +242,28 @@ public class ConfigView {
 		panelRojoSuperior.add(lblConfiguracion);
 		
 		btnVolver = new JButton("Volver");
+		btnVolver.setBackground(Color.WHITE);
 		btnVolver.setBounds(10, 17, 89, 23);
 		panelRojoSuperior.add(btnVolver);
 		btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnVolver.setBorder(null);
+		
+		panelSuperior = new JPanel();
+		panelSuperior.setBounds(36, 67, 579, 120);
+		frame.getContentPane().add(panelSuperior);
+		panelSuperior.setLayout(null);
+		
+		lblPokedex = new JLabel("");
+		lblPokedex.setBounds(152, 2, 256, 104);
+		panelSuperior.add(lblPokedex);
+		lblPokedex.setIcon(new ImageIcon(ConfigView.class.getResource("/img/pokemon.png")));
+		
+		lblBienvenida = new JLabel("Bienvenido a la configuraci\u00F3n de usuario");
+		lblBienvenida.setBounds(0, 84, 579, 36);
+		panelSuperior.add(lblBienvenida);
+		lblBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBienvenida.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		lblBienvenida.setForeground(Color.BLACK);
 		
 		setBasePanel();
 	}
@@ -265,6 +293,19 @@ public class ConfigView {
 				setBasePanel();
 			}
 		});
+		
+		btnBorrarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirmar = JOptionPane.showConfirmDialog(btnBorrarCuenta,
+						"¿Estás seguro de que deseas borrar tu cuenta?");
+				if (confirmar == 0) { // Confirma borrar
+					JOptionPane.showMessageDialog(btnBorrarCuenta, "Bueno adiós, usted se lo pierde");
+					userDAO.deleteUsuario(username);
+					frame.dispose();
+					new LoginView();
+				}
+			}
+		});
 	}
 	
 	public void setBasePanel() {
@@ -291,6 +332,7 @@ public class ConfigView {
 		pwActualPassCont.setText(null);
 		pwNewPass.setText(null);
 		pwRepitePass.setText(null);
+		tfNombreActual.setText(username);
 		modo = 1;
 	}
 	

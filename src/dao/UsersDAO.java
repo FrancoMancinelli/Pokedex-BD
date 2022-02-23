@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import models.Pokemon;
 import models.Usuario;
 
 public class UsersDAO extends AbstractDAO {
@@ -64,6 +65,15 @@ public class UsersDAO extends AbstractDAO {
 		 e.printStackTrace();
 		} 
 
+	}
+	
+	public void deleteUsuario(String nombre) {
+		final String DELETE = "DELETE FROM users WHERE username = '" + nombre + "'";
+		try {
+			stmt.executeUpdate(DELETE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 
