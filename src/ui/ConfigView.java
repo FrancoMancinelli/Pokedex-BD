@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import dao.UsersDAO;
+import models.Usuario;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -55,14 +56,19 @@ public class ConfigView {
 	private int modo;
 	private JPanel panelSuperior;
 	private UsersDAO userDAO;
+	private Usuario usuario;
+	private int pagina;
+	private JFrame frmLoginView;
 	
 	/**
 	 * Create the application.
 	 */
-	public ConfigView(JFrame pokedex, String username, String password) {
+	public ConfigView(JFrame pokedex, String username, String password, int pagina, JFrame loginview) {
 		this.pokedex = pokedex;
 		this.username = username;
 		this.password = password;
+		this.pagina = pagina;
+		this.frmLoginView = loginview;
 		this.userDAO = new UsersDAO();
 		initialize();
 		frame.setVisible(true);
@@ -306,6 +312,16 @@ public class ConfigView {
 				}
 			}
 		});
+		
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(modo == 1) {
+					confirmarCambioNombre();
+				} else if (modo == 2) {
+					confirmarCambioPass();
+				}
+			}
+		});
 	}
 	
 	public void setBasePanel() {
@@ -346,5 +362,53 @@ public class ConfigView {
 		tfNombreNuevo.setText(null);
 		pwActualPassName.setText(null);
 		modo = 2;
+	}
+	
+	public void confirmarCambioNombre() {
+		String passwd = new String (pwActualPassName.getPassword());
+		if(!tfNombreNuevo.getText().isEmpty() && !passwd.isEmpty()) {
+			if(!tfNombreNuevo.getText().equals(tfNombreActual.getText())) {
+				if(!userDAO.usuariosExistente(tfNombreNuevo.getText())) {
+					if(tfNombreNuevo.getText().length() >= 4 && tfNombreNuevo.getText().length() <= 12) {
+						if(!checkSpaces(tfNombreNuevo.getText())) {
+							if(passwd.equals(this.password)) {
+								int confirmar = JOptionPane.showConfirmDialog(btnBorrarCuenta,
+										"¿Estás seguro de que deseas guardar los cambios?");
+								if (confirmar == 0) { // Confirma borrar
+									JOptionPane.showMessageDialog(btnConfirmar, "Nombre actualizado con éxito");
+									userDAO.updateNombre(tfNombreActual.getText(), tfNombreNuevo.getText());
+									frame.dispose();
+									pokedex.dispose(); //Cierro la pokedex antigua para que se vea actualizado el nuevo nombre en ella
+									new PokedexView(tfNombreNuevo.getText(), frmLoginView, pagina, passwd);
+								}
+							} else {
+								JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  La contraseña es incorrecta");
+							}
+						} else {
+							JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  El nombre no puede estar compuesto por espacios");
+						}
+					} else {
+						JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  El nombre debe tener al menos 4 caracteres y máximo 12");
+					}
+				} else {
+					JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! - El nombre de usuario ya existe");
+				}
+			} else {
+				JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  El nombre a cambiar es igual al actual");
+			}
+		} else {
+			JOptionPane.showMessageDialog(btnConfirmar, "ERR0R! -  Asegurate de rellenar todos los campos");
+		}
+	}
+	
+	public void confirmarCambioPass() {
+		
+	}
+	
+	public boolean checkSpaces(String s) {
+		int index = s.indexOf(' ');
+		if(index != -1)
+			return true;
+		return false;
 	}
 }

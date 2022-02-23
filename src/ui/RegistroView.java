@@ -225,11 +225,11 @@ public class RegistroView {
 
 		if (!textUsuarioReg.getText().isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) {
 			if(!uDAO.usuariosExistente(textUsuarioReg.getText())) {
-				if(textUsuarioReg.getText().length() > 3 && textUsuarioReg.getText().length() < 11) {
+				if(textUsuarioReg.getText().length() >= 4 && textUsuarioReg.getText().length() <= 12) {
 					if(!checkSpaces(textUsuarioReg.getText())) {
 						if(passwd1.equals(passwd2)) { //Comprueba que la clave introducida sea la misma
 							if(!checkSpaces(passwd1)) {
-								if(passwd1.length() > 3 && passwd1.length() <= 15) {
+								if(passwd1.length() >= 4 && passwd1.length() <= 16) {
 									Usuario u = new Usuario(0, textUsuarioReg.getText(), passwd1);
 									try {
 										usuarioDAO.registro(u);

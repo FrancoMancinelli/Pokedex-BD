@@ -75,6 +75,32 @@ public class UsersDAO extends AbstractDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateNombre(String anterior, String nuevo) {
+		final String UPDATE = "UPDATE pokedex.users\r\n"
+				+ "SET\r\n"
+				+ "username = '"+nuevo+"'\r\n"
+				+ "WHERE username = '"+anterior+"';";
+		try {
+			stmt.executeUpdate(UPDATE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int consultaID(String nombre) {
+		final String QUERY = "SELECT idusers FROM users WHERE username = '"+nombre+"'";
+
+		try { 
+		         ResultSet rs = stmt.executeQuery(QUERY);		      
+		         while(rs.next()){
+		           return rs.getInt("idusers");
+		         }
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }
+		return -1; 
+	}
 
 
 }

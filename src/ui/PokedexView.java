@@ -408,7 +408,7 @@ public class PokedexView {
 		btnConfig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.setVisible(false);
-				new ConfigView(frmPokedex, username, password);
+				new ConfigView(frmPokedex, username, password, pagina, frmLoginView);
 			}
 		});
 	}
