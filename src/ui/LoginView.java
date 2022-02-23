@@ -42,6 +42,10 @@ public class LoginView {
 	private JPanel panelRojoDeco2;
 	private JPanel panelRojoDeco3;
 	private JPanel panelRojoDeco4;
+	private JPanel panelGrisDeco1;
+	private JPanel panelGrisDeco2;
+	private JPanel panelGrisDeco3;
+	private JPanel panelGrisDeco4;
 
 	/**
 	 * Create the application.
@@ -111,7 +115,27 @@ public class LoginView {
 		btnRegistrarse.setBounds(225, 339, 176, 44);
 		btnRegistrarse.setBorder(null);
 		frmPokedexMen.getContentPane().add(btnRegistrarse);
-
+		
+		panelGrisDeco1 = new JPanel();
+		panelGrisDeco1.setBackground(Color.DARK_GRAY);
+		panelGrisDeco1.setBounds(0, 28, 27, 420);
+		frmPokedexMen.getContentPane().add(panelGrisDeco1);
+		
+		panelGrisDeco2 = new JPanel();
+		panelGrisDeco2.setBackground(Color.DARK_GRAY);
+		panelGrisDeco2.setBounds(621, 27, 28, 420);
+		frmPokedexMen.getContentPane().add(panelGrisDeco2);
+		
+		panelGrisDeco3 = new JPanel();
+		panelGrisDeco3.setBackground(Color.DARK_GRAY);
+		panelGrisDeco3.setBounds(0, 0, 649, 31);
+		frmPokedexMen.getContentPane().add(panelGrisDeco3);
+		
+		panelGrisDeco4 = new JPanel();
+		panelGrisDeco4.setBackground(Color.DARK_GRAY);
+		panelGrisDeco4.setBounds(0, 425, 649, 31);
+		frmPokedexMen.getContentPane().add(panelGrisDeco4);
+		
 		panelRojoDeco1 = new JPanel();
 		panelRojoDeco1.setBackground(Color.RED);
 		panelRojoDeco1.setBounds(0, 0, 649, 62);
@@ -136,6 +160,13 @@ public class LoginView {
 		lblPokedex.setBounds(176, 89, 256, 104);
 		lblPokedex.setIcon(new ImageIcon(LoginView.class.getResource("/img/pokemon.png")));
 		frmPokedexMen.getContentPane().add(lblPokedex);
+		
+
+		
+
+		
+		
+		
 	}
 
 	/**
