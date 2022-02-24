@@ -1,6 +1,3 @@
-# Pokedex-BD
+# Pokedex con Base de Datos
 
-Pendiente:
-- Eliminar funciones, clases y complementos innecesarios/inutilizados
-- Agregar comentarios
-- Optimizar código
+
