@@ -2,11 +2,10 @@ package models;
 
 import javax.swing.ImageIcon;
 
-import enums.TipoPokemons;
 
 public class Pokemon {
 
-	//Atributos
+	// ~~~ ATRIBUTOS
 	protected int numero;
 	protected String nombre;
 	protected double altura;
@@ -19,8 +18,18 @@ public class Pokemon {
 	protected Tipos tipo2;
 
 	
-	//Constructor
+	// ~~~ CONSTRUCTORES
 	
+	/**
+	 * Construye un Pokemon sin pasarle como parametro una imagen
+	 * ya que esta se pondrá por default
+	 * @param numero Número del pokemon
+	 * @param nombre Nombre del pokemon
+	 * @param altura Altrua del pokemon
+	 * @param peso Peso del pokemon
+	 * @param categoria Categoria del pokemon
+	 * @param habilidad Habilidad del pokemon 
+	 */
 	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad) {
 		super();
 		this.numero = numero;
@@ -32,7 +41,17 @@ public class Pokemon {
 		this.imagen = new ImageIcon(Pokemon.class.getResource("/img/interrogacion.png"));
 	}
 	
-	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad,ImageIcon img) {
+	/**
+	 * Contruye un Pokemon pasandole un ImagenIcon
+	 * @param numero Número del pokemon
+	 * @param nombre Nombre del pokemon
+	 * @param altura Altrua del pokemon
+	 * @param peso Peso del pokemon
+	 * @param categoria Categoria del pokemon
+	 * @param habilidad Habilidad del pokemon 
+	 * @param img
+	 */
+	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad, ImageIcon img) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
@@ -44,7 +63,16 @@ public class Pokemon {
 	}
 	
 
-
+	/**
+	 * Contruye un Pokemon pasandole un link de Imagen
+	 * @param numero Número del pokemon
+	 * @param nombre Nombre del pokemon
+	 * @param altura Altrua del pokemon
+	 * @param peso Peso del pokemon
+	 * @param categoria Categoria del pokemon
+	 * @param habilidad Habilidad del pokemon 
+	 * @param img
+	 */
 	public Pokemon(int numero, String nombre, double altura, double peso, String categoria, String habilidad, String img) {
 		super();
 		this.numero = numero;
@@ -57,6 +85,7 @@ public class Pokemon {
 	}
 	
 
+	// ~~~ GETTERS & SETTERS
 	public int getNumero() {
 		return numero;
 	}
@@ -142,8 +171,8 @@ public class Pokemon {
 		this.tipo2 = tipo2;
 	}
 	
-		public ImageIcon getImagen2() {
-			ImageIcon img = new ImageIcon(Pokemon.class.getResource(""+imagen2));;
+	public ImageIcon getImagen2() {
+		ImageIcon img = new ImageIcon(Pokemon.class.getResource(""+imagen2));;
 		return img;
 	}
 

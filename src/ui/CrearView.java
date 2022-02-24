@@ -5,7 +5,6 @@ import javax.swing.JTextField;
 
 import dao.PokemonDAO;
 import dao.TiposDAO;
-import enums.TipoPokemons;
 import models.Pokemon;
 import models.Tipos;
 
@@ -39,7 +38,6 @@ public class CrearView {
 	private JButton btnConfirmarCrear;
 	private JButton btnVolverPkx;
 	private JFrame PokedexView;
-	private TipoPokemons EnumSetTipo;
 	private String username;
 	private JLabel lblPokedex;
 	private PokemonDAO pokemonDAO;
@@ -257,7 +255,9 @@ public class CrearView {
 		});
 	}
 
-
+	/**
+	 * Método que inserta un Pokemon a la base de datos
+	 */
 	public void insertarPokemon() {
 
 		double alt = Double.parseDouble(textFldSetAltura.getText());
@@ -266,9 +266,9 @@ public class CrearView {
 
 		if (textFldSetNombre.getText().isEmpty() || textFldSetPeso.getText().isEmpty() || 
 			textFldSetAltura.getText().isEmpty() || textFldSetCategoria.getText().isEmpty() || 
-			textFldSetHabilidad.getText().isEmpty()) {
+			textFldSetHabilidad.getText().isEmpty()) { //Si los campos de datos estan vacios...
 				JOptionPane.showMessageDialog(btnConfirmarCrear, "ERR0R! - Rellena todos los campos");
-		if(!pDAO.pokemonExistente(textFldSetNombre.getText())) {
+		if(!pDAO.pokemonExistente(textFldSetNombre.getText())) { //Si el Pokemon NO existe en la Pokedex...
 			} else {
 				try {
 					Pokemon p = new Pokemon(0, textFldSetNombre.getText(), alt, pes, textFldSetCategoria.getText(), textFldSetHabilidad.getText());
@@ -292,6 +292,9 @@ public class CrearView {
 		}
 	}
 
+	/**
+	 * Rellena los ComboBoxes con los diferentes tipos
+	 */
 	private void fillTipos() {
 		for(Tipos t : tipos1) {
 			cbTipo1.addItem(t.getNombre());

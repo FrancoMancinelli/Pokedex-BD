@@ -249,12 +249,12 @@ public class PokedexView {
 		panelFondoPokemon.add(lblTipo2);
 		
 		lblDatoTipo1 = new JLabel("");
-		lblDatoTipo1.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
+		lblDatoTipo1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 16));
 		lblDatoTipo1.setBounds(361, 207, 97, 25);
 		panelFondoPokemon.add(lblDatoTipo1);
 		
 		lblDatoTipo2 = new JLabel("");
-		lblDatoTipo2.setFont(new Font("Trebuchet MS", Font.ITALIC, 16));
+		lblDatoTipo2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 16));
 		lblDatoTipo2.setBounds(361, 244, 97, 25);
 		panelFondoPokemon.add(lblDatoTipo2);
 		
@@ -299,7 +299,7 @@ public class PokedexView {
 		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBackground(new Color(177, 228, 107));
-		btnBorrar.setForeground(new Color(255, 255, 255));
+		btnBorrar.setForeground(Color.BLACK);
 		btnBorrar.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnBorrar.setBounds(60, 11, 120, 40);
 		btnBorrar.setBorder(null);
@@ -307,7 +307,7 @@ public class PokedexView {
 		
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBackground(new Color(177, 228, 107));
-		btnActualizar.setForeground(new Color(255, 255, 255));
+		btnActualizar.setForeground(Color.BLACK);
 		btnActualizar.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnActualizar.setBounds(242, 11, 150, 40);
 		btnActualizar.setBorder(null);
@@ -315,7 +315,7 @@ public class PokedexView {
 		
 		btnCrear = new JButton("Crear");
 		btnCrear.setBackground(new Color(177, 228, 107));
-		btnCrear.setForeground(new Color(255, 255, 255));
+		btnCrear.setForeground(Color.BLACK);
 		btnCrear.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnCrear.setBounds(457, 11, 120, 40);
 		btnCrear.setBorder(null);
@@ -324,7 +324,7 @@ public class PokedexView {
 		btnAceptarAct = new JButton("Aceptar");
 		btnAceptarAct.setBounds(142, 11, 119, 40);
 		panelOpciones.add(btnAceptarAct);
-		btnAceptarAct.setForeground(new Color(255, 255, 255));
+		btnAceptarAct.setForeground(Color.BLACK);
 		btnAceptarAct.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAceptarAct.setBorder(null);
 		btnAceptarAct.setBackground(new Color(177, 228, 107));
@@ -332,7 +332,7 @@ public class PokedexView {
 		btnCancelarAct = new JButton("Cancelar");
 		btnCancelarAct.setBounds(354, 11, 131, 40);
 		panelOpciones.add(btnCancelarAct);
-		btnCancelarAct.setForeground(new Color(255, 255, 255));
+		btnCancelarAct.setForeground(Color.BLACK);
 		btnCancelarAct.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnCancelarAct.setBorder(null);
 		btnCancelarAct.setBackground(new Color(177, 228, 107));
@@ -420,6 +420,9 @@ public class PokedexView {
 		});
 	}
 	
+	/**
+	 * Imprime la información del Pokemon que se encuentre en la pagina actual
+	 */
 	private void printPokemon() {
 		Pokemon p = pokemones.get(pagina);
 		if(pokemones.size() > 0) {
@@ -438,6 +441,9 @@ public class PokedexView {
 
 	}
 	
+	/**
+	 * Imprime la pagina siguiente de manera circular
+	 */
 	private void printSiguiente() {
 		pagina++;
 		if(pagina == pokemones.size()) {
@@ -446,6 +452,9 @@ public class PokedexView {
 		printPokemon();
 	}
 	
+	/**
+	 * Imprime la pagina anterior de manera circular
+	 */
 	private void printAnterior() {
 		pagina--;
 		if(pagina < 0) {
@@ -454,6 +463,9 @@ public class PokedexView {
 		printPokemon();
 	}
 	
+	/**
+	 * Imprime la vista de la Pokedex a modo Vacio cuando no hay Pokemones
+	 */
 	private void printVacio() {
 		lblPokemonName.setText("");
 		lblPokemonNumber.setText("");
@@ -467,6 +479,9 @@ public class PokedexView {
 		cbTipo2Act.setVisible(false);
 	}
 	
+	/**
+	 * Configura la view en modo Base
+	 */
 	private void setActualizarOFF() {
 		lblPokemonName.setEditable(false);
 		lblDatoDeAltura.setEditable(false);
@@ -486,6 +501,9 @@ public class PokedexView {
 		lblDatoTipo2.setVisible(true);
 	}
 	
+	/**
+	 * Configura la view en modo Actualizar
+	 */
 	private void setActualizarON() {
 		lblPokemonName.setEditable(true);
 		lblDatoDeAltura.setEditable(true);
@@ -507,6 +525,9 @@ public class PokedexView {
 		cbTipo2Act.setSelectedIndex(pokemones.get(pagina).getTipo2().getId()-1);
 	}
 	
+	/**
+	 * Actualiza los datos del Pokemon que se encuentra en la pagina actual
+	 */
 	private void updatePokemon() {
 		Pokemon p = pokemones.get(pagina);
 		p.setNombre(lblPokemonName.getText());
@@ -521,6 +542,9 @@ public class PokedexView {
 		pokemonDAO.updatePokemon(p);
 	}
 	
+	/**
+	 * Rellena los ComboBoxes con los diferentes tipos
+	 */
 	private void fillTipos() {
 		for(Tipos t : tipos1) {
 			cbTipo1Act.addItem(t.getNombre());

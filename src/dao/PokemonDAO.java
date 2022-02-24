@@ -19,6 +19,10 @@ public class PokemonDAO extends AbstractDAO {
 		this.tiposDAO = new TiposDAO();
 	}
 
+	/**
+	 * Método que busca el primer Pokemon alojado en la base de datos
+	 * @return el primer Pokemon encontrado en la base de datos
+	 */
 	public Pokemon consultaFirst() {
 		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad, imagen"
 				+ " FROM pokemones LIMIT 1";
@@ -43,6 +47,10 @@ public class PokemonDAO extends AbstractDAO {
 				return null;
 	}
 
+	/**
+	 * Rellena un array con todos los Pokemones alojados en la base de datos
+	 * @return Un array relleno con los Pokemones
+	 */
 	public ArrayList<Pokemon> getAll() {
 		final String QUERY = "SELECT numero, nombre, altura, peso, categoria, habilidad, imagen"
 				+ ", idTipo1, idTipo2"
@@ -70,6 +78,10 @@ public class PokemonDAO extends AbstractDAO {
 				return pokemones;
 	}
 
+	/**
+	 * Inserta un Pokemon en la base de datos
+	 * @param p El Pokemon a ingresar
+	 */
 	public void insertPokemon(Pokemon p) {
 		final String INSERT = "INSERT INTO pokedex.pokemones (numero, nombre, altura, peso, categoria, habilidad, idTipo1, idTipo2)"
 				+ " VALUES ('0', '"+ p.getNombre() +"', '"+ p.getAltura() +"', '"+ p.getPeso() +"', '" + p.getCategoria()
@@ -82,6 +94,10 @@ public class PokemonDAO extends AbstractDAO {
 		} 
 	}
 
+	/**
+	 * Elimina un Pokemon de la base de datos
+	 * @param p El Pokemon a eliminar 
+	 */
 	public void deletePokemon(Pokemon p) {
 		final String DELETE = "DELETE FROM pokemones WHERE numero = " + p.getNumero();
 		try {
@@ -91,6 +107,10 @@ public class PokemonDAO extends AbstractDAO {
 		}
 	}
 
+	/**
+	 * Actualiza la información de un Pokemon en la base de datos
+	 * @param p Pokemon a ser actualizado
+	 */
 	public void updatePokemon(Pokemon p) {
 		final String UPDATE = "UPDATE pokedex.pokemones\r\n"
 				+ "SET\r\n"
@@ -107,6 +127,11 @@ public class PokemonDAO extends AbstractDAO {
 		}
 	}
 	
+	/**
+	 * Método que busca si existe el Pokemon indicado según su nombre
+	 * @param nombre Nombre del Pokemon a buscar
+	 * @return True si existe ya el nombre, False si aún no
+	 */
 	public boolean pokemonExistente(String nombre) {
 		final String QUERY = "SELECT nombre FROM pokemones WHERE nombre = '" + nombre + "'";
 

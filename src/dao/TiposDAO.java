@@ -12,6 +12,10 @@ import models.Tipos;
 
 public class TiposDAO extends AbstractDAO {
 
+	/**
+	 * Rellena un array con todos los tipos1 de la base de datos
+	 * @return Un array relleno de los tipos
+	 */
 	public ArrayList<Tipos> getAllTipo1() {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos";
@@ -31,11 +35,14 @@ public class TiposDAO extends AbstractDAO {
 				return tipos;
 	}
 
-
+	/**
+	 * Busca un tipo de los tipos1 en la base de datos por medio de su id
+	 * @param idTipos El id del tipo a buscar
+	 * @return El tipo1 buscado
+	 */
 	public Tipos getTipo1(int idTipos) {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos WHERE id = " + idTipos;
-		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
 		try { 
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){
@@ -51,6 +58,10 @@ public class TiposDAO extends AbstractDAO {
 				return null;
 	}
 	
+	/**
+	 * Rellena un array con todos los tipos2 de la base de datos
+	 * @return Un array relleno de los tipos
+	 */
 	public ArrayList<Tipos> getAllTipo2() {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos2";
@@ -70,11 +81,14 @@ public class TiposDAO extends AbstractDAO {
 				return tipos;
 	}
 
-
+	/**
+	 * Busca un tipo de los tipos2 en la base de datos por medio de su id
+	 * @param idTipos El id del tipo a buscar
+	 * @return El tipo2 buscado
+	 */
 	public Tipos getTipo2(int idTipos) {
 		final String QUERY = "SELECT id, nombre"
 				+ " FROM tipos2 WHERE id = " + idTipos;
-		ArrayList<Tipos> tipos2 = new ArrayList<Tipos>();
 		try { 
 		         ResultSet rs = stmt.executeQuery(QUERY);		      
 		         while(rs.next()){

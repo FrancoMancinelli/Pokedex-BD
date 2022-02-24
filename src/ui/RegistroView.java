@@ -119,63 +119,63 @@ public class RegistroView {
 
 		lblPokedex = new JLabel("");
 		lblPokedex.setIcon(new ImageIcon(RegistroView.class.getResource("/img/pokemon.png")));
-		lblPokedex.setBounds(171, 89, 256, 104);
+		lblPokedex.setBounds(198, 91, 256, 104);
 		frmRegistro.getContentPane().add(lblPokedex);
 		
-				btnVolver = new JButton("Volver");
-				btnVolver.setBounds(65, 65, 85, 25);
-				frmRegistro.getContentPane().add(btnVolver);
-				btnVolver.setBackground(new Color(255, 255, 255));
-				btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
+			btnVolver = new JButton("Volver");
+			btnVolver.setBounds(65, 65, 85, 25);
+			frmRegistro.getContentPane().add(btnVolver);
+			btnVolver.setBackground(new Color(255, 255, 255));
+			btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
 				
-				panel = new JPanel();
-				panel.setBackground(Color.DARK_GRAY);
-				panel.setBounds(0, 0, 639, 27);
-				frmRegistro.getContentPane().add(panel);
-				
-				panel_1 = new JPanel();
-				panel_1.setBackground(Color.DARK_GRAY);
-				panel_1.setBounds(0, 429, 639, 27);
-				frmRegistro.getContentPane().add(panel_1);
-				
-				panel_2 = new JPanel();
-				panel_2.setBackground(Color.DARK_GRAY);
-				panel_2.setBounds(0, 0, 27, 455);
-				frmRegistro.getContentPane().add(panel_2);
-				
-				panel_3 = new JPanel();
-				panel_3.setBackground(Color.DARK_GRAY);
-				panel_3.setBounds(612, 0, 27, 455);
-				frmRegistro.getContentPane().add(panel_3);
-				
-				panel_4 = new JPanel();
-				panel_4.setBackground(Color.RED);
-				panel_4.setBounds(26, 25, 27, 405);
-				frmRegistro.getContentPane().add(panel_4);
-				
-				panel_5 = new JPanel();
-				panel_5.setBackground(Color.RED);
-				panel_5.setBounds(585, 27, 27, 405);
-				frmRegistro.getContentPane().add(panel_5);
-				
-				panel_6 = new JPanel();
-				panel_6.setBackground(Color.RED);
-				panel_6.setBounds(53, 25, 535, 27);
-				frmRegistro.getContentPane().add(panel_6);
-				
-				panel_7 = new JPanel();
-				panel_7.setBackground(Color.RED);
-				panel_7.setBounds(53, 403, 535, 27);
-				frmRegistro.getContentPane().add(panel_7);
-				
-				imgfondo = new JLabel("");
-				imgfondo.setBounds(53, 49, 535, 358);
-				imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
-				frmRegistro.getContentPane().add(imgfondo);
+			panel = new JPanel();
+			panel.setBackground(Color.DARK_GRAY);
+			panel.setBounds(0, 0, 639, 27);
+			frmRegistro.getContentPane().add(panel);
+			
+			panel_1 = new JPanel();
+			panel_1.setBackground(Color.DARK_GRAY);
+			panel_1.setBounds(0, 429, 639, 27);
+			frmRegistro.getContentPane().add(panel_1);
+			
+			panel_2 = new JPanel();
+			panel_2.setBackground(Color.DARK_GRAY);
+			panel_2.setBounds(0, 0, 27, 455);
+			frmRegistro.getContentPane().add(panel_2);
+			
+			panel_3 = new JPanel();
+			panel_3.setBackground(Color.DARK_GRAY);
+			panel_3.setBounds(612, 0, 27, 455);
+			frmRegistro.getContentPane().add(panel_3);
+			
+			panel_4 = new JPanel();
+			panel_4.setBackground(Color.RED);
+			panel_4.setBounds(26, 25, 27, 405);
+			frmRegistro.getContentPane().add(panel_4);
+			
+			panel_5 = new JPanel();
+			panel_5.setBackground(Color.RED);
+			panel_5.setBounds(585, 27, 27, 405);
+			frmRegistro.getContentPane().add(panel_5);
+			
+			panel_6 = new JPanel();
+			panel_6.setBackground(Color.RED);
+			panel_6.setBounds(53, 25, 535, 27);
+			frmRegistro.getContentPane().add(panel_6);
+			
+			panel_7 = new JPanel();
+			panel_7.setBackground(Color.RED);
+			panel_7.setBounds(53, 403, 535, 27);
+			frmRegistro.getContentPane().add(panel_7);
+			
+			imgfondo = new JLabel("");
+			imgfondo.setBounds(53, 49, 535, 358);
+			imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
+			frmRegistro.getContentPane().add(imgfondo);
 	}
 
 	/**
-	 * Configura las acciones al presionar un botón
+	 * Configura las acciones al presionar un botón o teclas
 	 */
 	private void setListeners() {
 		btnRegistrarseReg.addActionListener(new ActionListener() {
@@ -217,6 +217,10 @@ public class RegistroView {
 		
 	}
 	
+	/**
+	 * Comprueba si existen espacios en un String
+	 * @return True en caso de encontrar algun espacio, False en caso de no encontrarlo
+	 */
 	public boolean checkSpaces(String s) {
 		int index = s.indexOf(' ');
 		if(index != -1)
@@ -224,18 +228,22 @@ public class RegistroView {
 		return false;
 	}
 	
+	/**
+	 * Registra un nuevo Usuario en la base de datos según los datos introducidos
+	 * en los TextFields
+	 */
 	public void realizarRegistro() {
 		UsersDAO uDAO = new UsersDAO();
 		String passwd1 = new String (pFldContraseña1.getPassword());
 		String passwd2 = new String (pFldContraseña2.getPassword());
 
-		if (!textUsuarioReg.getText().isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) {
-			if(!uDAO.usuariosExistente(textUsuarioReg.getText())) {
-				if(textUsuarioReg.getText().length() >= 4 && textUsuarioReg.getText().length() <= 12) {
-					if(!checkSpaces(textUsuarioReg.getText())) {
-						if(passwd1.equals(passwd2)) { //Comprueba que la clave introducida sea la misma
-							if(!checkSpaces(passwd1)) {
-								if(passwd1.length() >= 4 && passwd1.length() <= 16) {
+		if (!textUsuarioReg.getText().isEmpty() && !passwd1.isEmpty() && !passwd2.isEmpty()) { //Si los campos a rellenar NO estan vacios...
+			if(!uDAO.usuariosExistente(textUsuarioReg.getText())) { //Si NO existe un Usuario con ese nombre...
+				if(textUsuarioReg.getText().length() >= 4 && textUsuarioReg.getText().length() <= 12) { //Si el nombre cumple los requisitos de longitud...
+					if(!checkSpaces(textUsuarioReg.getText())) { //Si el nombre NO lleva espacios...
+						if(passwd1.equals(passwd2)) { //Si las claves introducidas sean las mismas...
+							if(!checkSpaces(passwd1)) { //Si la clave NO lleva espacios...
+								if(passwd1.length() >= 4 && passwd1.length() <= 16) { //Si la contraseña cumple los requisitos de longitud...
 									Usuario u = new Usuario(0, textUsuarioReg.getText(), passwd1);
 									try {
 										usuarioDAO.registro(u);

@@ -2,11 +2,12 @@ package models;
 
 public class Usuario {
 
-	//Atributos
+	// ~~~ ATRIBUTOS
 	protected int id;
 	protected String username;
 	protected String password;
 	
+	// ~~~ CONSTRUCTOR
 	/**
 	 * Construye un usuario
 	 * @param username Nombre del usuario
@@ -19,7 +20,7 @@ public class Usuario {
 		this.password = password;
 	}
 
-
+	// ~~~ GETTERS & SETTERS
 	public int getID() {
 		return id;
 	}

@@ -1,17 +1,19 @@
 package models;
 
 public class Tipos {
+	
+	// ~~~ ATRIBUTOS
 	private int id;
 	private String nombre;
 	
-	
+	// ~~~ CONSTRUCTOR
 	public Tipos(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
 	
-	
+	// ~~~ GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}

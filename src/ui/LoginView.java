@@ -166,12 +166,6 @@ public class LoginView {
 		imgfondo.setBounds(53, 51, 541, 347);
 		frmPokedexMen.getContentPane().add(imgfondo);
 		imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
-
-
-		
-
-		
-		
 		
 	}
 
@@ -217,4 +211,4 @@ public class LoginView {
 			JOptionPane.showMessageDialog(btnEntrar, "                                ERR0R 203 - Login Incorrecto.\nAsegurate de haber introducido correctamente el usuario y contraseña");
 		}
 	}
-} //CIERRE CLASE
+} 

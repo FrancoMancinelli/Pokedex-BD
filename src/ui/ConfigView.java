@@ -88,6 +88,9 @@ public class ConfigView {
 		
 	}
 	
+	/**
+	 * Configure los componentes gráficos de la view
+	 */
 	public void setUIComponents() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
@@ -286,7 +289,7 @@ public class ConfigView {
 		btnCambiarContrasea.setBorder(null);
 		
 		btnBorrarCuenta = new JButton("Borrar Cuenta");
-		btnBorrarCuenta.setForeground(Color.WHITE);
+		btnBorrarCuenta.setForeground(Color.BLACK);
 		btnBorrarCuenta.setBounds(16, 163, 190, 50);
 		panelBotones.add(btnBorrarCuenta);
 		btnBorrarCuenta.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -306,6 +309,9 @@ public class ConfigView {
 		setBasePanel();
 	}
 	
+	/**
+	 * Configura las acciones de los botones
+	 */
 	public void setListeners() {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -361,14 +367,14 @@ public class ConfigView {
 						btnConfirmar.setVisible(true);
 						btnCancelar.setVisible(true);
 						imgfondo3.setVisible(true);
-						panelCambios.setBackground(new Color(240, 240, 240));
+						panelCambios.setBackground(new Color(127, 172, 113));
 					} else if (modo == 2) {
 						imgPikaSad.setVisible(false);
 						panelContraseña.setVisible(true);
 						btnConfirmar.setVisible(true);
 						btnCancelar.setVisible(true);
 						imgfondo3.setVisible(true);
-						panelCambios.setBackground(new Color(240, 240, 240));
+						panelCambios.setBackground(new Color(127, 172, 113));
 					} 
 				}
 			}
@@ -385,6 +391,9 @@ public class ConfigView {
 		});
 	}
 	
+	/**
+	 * Configura la vista para que se vea en estado base
+	 */
 	public void setBasePanel() {
 		btnCancelar.setVisible(false);
 		btnConfirmar.setVisible(false);
@@ -403,6 +412,9 @@ public class ConfigView {
 		modo = 0;
 	}
 	
+	/**
+	 * Configura la vista para que se vea en estado cambio de nombre
+	 */
 	public void setNombrePanel() {
 		btnCancelar.setVisible(true);
 		btnConfirmar.setVisible(true);
@@ -419,6 +431,9 @@ public class ConfigView {
 		modo = 1;
 	}
 	
+	/**
+	 * Configura la vista para que se vea en estado cambio de contraseña
+	 */
 	public void setPassPanel() {
 		btnCancelar.setVisible(true);
 		btnConfirmar.setVisible(true);
@@ -434,6 +449,11 @@ public class ConfigView {
 		modo = 2;
 	}
 	
+	/**
+	 * Método que comprueba los datos introducidos para el cambio de nombre
+	 * Si los datos son correctos según las condiciones se ejecutara la
+	 * actualización, de lo contrario señalizará donde esta el fallo
+	 */
 	public void confirmarCambioNombre() {
 		String passwd = new String (pwActualPassName.getPassword());
 		if(!tfNombreNuevo.getText().isEmpty() && !passwd.isEmpty()) {
@@ -471,23 +491,28 @@ public class ConfigView {
 		}
 	}
 	
+	/**
+	 * Método que comprueba los datos introducidos para el cambio de password
+	 * Si los datos son correctos según las condiciones se ejecutara la
+	 * actualización, de lo contrario señalizará donde esta el fallo
+	 */
 	public void confirmarCambioPass() {
 		String passwdActual = new String (pwActualPassCont.getPassword());
 		String passwdNueva1 = new String (pwNewPass.getPassword());
 		String passwdNueva2 = new String (pwRepitePass.getPassword());
-		if(!passwdActual.isEmpty() && !passwdNueva1.isEmpty() && !passwdNueva2.isEmpty()) {
-			if(passwdNueva1.equals(passwdNueva2)) {
-				if(!passwdActual.equals(passwdNueva1)) {
-					if(passwdNueva1.length() >= 4 && passwdNueva1.length() <= 16) {
-						if(!checkSpaces(passwdNueva1)) {
-							if(passwdActual.equals(this.password)) {
+		if(!passwdActual.isEmpty() && !passwdNueva1.isEmpty() && !passwdNueva2.isEmpty()) { //Si los campos no estan vacios...
+			if(passwdNueva1.equals(passwdNueva2)) { //Si las nuevas contraseñas coinciden...
+				if(!passwdActual.equals(passwdNueva1)) { //Si la contraseña nueva NO es la misma a la actual...
+					if(passwdNueva1.length() >= 4 && passwdNueva1.length() <= 16) { //Si la contraseña nueva no mide lo permitido...
+						if(!checkSpaces(passwdNueva1)) { //Si la contraseña nueva NO contiene espacios...
+							if(passwdActual.equals(this.password)) { //Si la contraseña de confirmación coincide con la contraseña actual...
 								int confirmar = JOptionPane.showConfirmDialog(btnBorrarCuenta,
 										"¿Estás seguro de que deseas guardar los cambios?");
 								if (confirmar == 0) { // Confirma borrar
 									JOptionPane.showMessageDialog(btnConfirmar, "Contraseña actualizada con éxito");
 									userDAO.updatePassword(passwdNueva1, username);
 									frame.dispose();
-									pokedex.dispose();
+									pokedex.dispose(); //Cierro la view y la vuelvo a crear para que salgan reflejados los cambios en la Pokedex
 									new PokedexView(username, frmLoginView, pagina, passwdNueva1);
 								}
 							} else {
@@ -510,6 +535,11 @@ public class ConfigView {
 		}
 	}
 	
+	/**
+	 * Comprueba si un String contiene algún espacio
+	 * @param s String a analizar
+	 * @return True si el string tiene un espacio, False en caso contrario
+	 */
 	public boolean checkSpaces(String s) {
 		if(s.indexOf(' ') != -1)
 			return true;
