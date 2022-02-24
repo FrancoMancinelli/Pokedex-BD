@@ -41,10 +41,6 @@ public class CrearView {
 	private JFrame PokedexView;
 	private TipoPokemons EnumSetTipo;
 	private String username;
-	private JPanel panel;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_1_1;
 	private JLabel lblPokedex;
 	private PokemonDAO pokemonDAO;
 	private TiposDAO tipos1DAO;
@@ -55,6 +51,15 @@ public class CrearView {
 	private ArrayList<Tipos> tipos1;
 	private ArrayList<Tipos> tipos2;
 	private String password;
+	private JLabel imgfondo;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JPanel panel_5;
+	private JPanel panel_6;
+	private JPanel panel_7;
 
 
 
@@ -155,42 +160,11 @@ public class CrearView {
 		textFldSetHabilidad.setColumns(10);
 
 		btnConfirmarCrear = new JButton("Crear");
-		btnConfirmarCrear.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnConfirmarCrear.setFont(new Font("Verdana", Font.BOLD, 18));
 		btnConfirmarCrear.setForeground(new Color(255, 255, 255));
 		btnConfirmarCrear.setBackground(new Color(0, 51, 204));
 		btnConfirmarCrear.setBounds(265, 337, 113, 48);
 		frame.getContentPane().add(btnConfirmarCrear);
-
-		panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(Color.RED);
-		panel.setBounds(0, 0, 649, 48);
-		frame.getContentPane().add(panel);
-
-		btnVolverPkx = new JButton("Volver");
-		btnVolverPkx.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnVolverPkx.setBackground(new Color(255, 255, 255));
-		btnVolverPkx.setBounds(10, 17, 89, 23);
-		btnVolverPkx.setBorder(null);
-		panel.add(btnVolverPkx);
-
-		panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBackground(Color.RED);
-		panel_1.setBounds(0, 43, 55, 370);
-		frame.getContentPane().add(panel_1);
-
-		panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBackground(Color.RED);
-		panel_2.setBounds(0, 408, 649, 48);
-		frame.getContentPane().add(panel_2);
-
-		panel_1_1 = new JPanel();
-		panel_1_1.setLayout(null);
-		panel_1_1.setBackground(Color.RED);
-		panel_1_1.setBounds(594, 43, 55, 370);
-		frame.getContentPane().add(panel_1_1);
 
 		lblPokedex = new JLabel("");
 		lblPokedex.setIcon(new ImageIcon(CrearView.class.getResource("/img/pokemon.png")));
@@ -210,6 +184,58 @@ public class CrearView {
 		cbTipo2 = new JComboBox<String>();
 		cbTipo2.setBounds(438, 295, 120, 22);
 		frame.getContentPane().add(cbTipo2);
+		
+		btnVolverPkx = new JButton("Volver");
+		btnVolverPkx.setBounds(65, 65, 85, 25);
+		frame.getContentPane().add(btnVolverPkx);
+		btnVolverPkx.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnVolverPkx.setBackground(new Color(255, 255, 255));
+		
+		panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 27, 455);
+		frame.getContentPane().add(panel);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(Color.RED);
+		panel_1.setBounds(26, 27, 27, 403);
+		frame.getContentPane().add(panel_1);
+		
+		panel_2 = new JPanel();
+		panel_2.setBackground(Color.RED);
+		panel_2.setBounds(53, 403, 535, 27);
+		frame.getContentPane().add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_3.setBackground(Color.DARK_GRAY);
+		panel_3.setBounds(0, 429, 639, 27);
+		frame.getContentPane().add(panel_3);
+		
+		panel_4 = new JPanel();
+		panel_4.setBackground(Color.RED);
+		panel_4.setBounds(585, 27, 27, 404);
+		frame.getContentPane().add(panel_4);
+		
+		panel_5 = new JPanel();
+		panel_5.setBackground(Color.DARK_GRAY);
+		panel_5.setBounds(612, 0, 27, 455);
+		frame.getContentPane().add(panel_5);
+		
+		panel_6 = new JPanel();
+		panel_6.setBackground(Color.DARK_GRAY);
+		panel_6.setBounds(0, 0, 639, 27);
+		frame.getContentPane().add(panel_6);
+		
+		panel_7 = new JPanel();
+		panel_7.setBackground(Color.RED);
+		panel_7.setBounds(53, 25, 535, 27);
+		frame.getContentPane().add(panel_7);
+		
+		imgfondo = new JLabel("");
+		imgfondo.setBounds(48, 45, 544, 370);
+		frame.getContentPane().add(imgfondo);
+		imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
+
 		fillTipos();
 	}
 

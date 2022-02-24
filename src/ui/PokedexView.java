@@ -78,6 +78,7 @@ public class PokedexView {
 	private TiposDAO tipos2DAO;
 	private JLabel cesped;
 	private String password;
+	private JLabel imgfondo;
 	
 
 	
@@ -128,7 +129,7 @@ public class PokedexView {
 		frmPokedex.getContentPane().add(panelRojoSuperior);
 		panelRojoSuperior.setLayout(null);
 		
-		lblTituloPokedex = new JLabel("Pokedex");
+		lblTituloPokedex = new JLabel("Pokédex");
 		lblTituloPokedex.setFont(new Font("Trebuchet MS", Font.BOLD, 32));
 		lblTituloPokedex.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTituloPokedex.setBounds(203, 10, 214, 34);
@@ -160,7 +161,7 @@ public class PokedexView {
 		panelRojoSuperior.add(btnConfig);
 		
 		panelFondoPokemon = new JPanel();
-		panelFondoPokemon.setBackground(Color.WHITE);
+		panelFondoPokemon.setBackground(new Color(127, 172, 113));
 		panelFondoPokemon.setBounds(68, 67, 515, 282);
 		frmPokedex.getContentPane().add(panelFondoPokemon);
 		panelFondoPokemon.setLayout(null);
@@ -172,14 +173,14 @@ public class PokedexView {
 		panelFondoPokemon.add(lblPokemonName);
 		
 		lblPokemonNumber = new JLabel("");
-		lblPokemonNumber.setForeground(new Color(128, 128, 128));
+		lblPokemonNumber.setForeground(Color.DARK_GRAY);
 		lblPokemonNumber.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblPokemonNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPokemonNumber.setBounds(331, 15, 89, 27);
 		panelFondoPokemon.add(lblPokemonNumber);
 		
 		lblPokemonImg = new JLabel();
-		lblPokemonImg.setBounds(67, 80, 148, 152);
+		lblPokemonImg.setBounds(67, 90, 148, 152);
 		lblPokemonImg.setIcon(pokemones.get(pagina).getImagen2());
 		panelFondoPokemon.add(lblPokemonImg);
 		
@@ -211,7 +212,7 @@ public class PokedexView {
 		lblDatoDePeso.setBounds(361, 100, 97, 20);
 		panelFondoPokemon.add(lblDatoDePeso);
 		
-		lbltxtCategoria = new JLabel("Categoria:");
+		lbltxtCategoria = new JLabel("Categor\u00EDa:");
 		lbltxtCategoria.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		lbltxtCategoria.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltxtCategoria.setBounds(252, 130, 112, 28);
@@ -266,9 +267,15 @@ public class PokedexView {
 		panelFondoPokemon.add(cbTipo2Act);
 		
 		cesped = new JLabel("");
-		cesped.setBounds(72, 197, 125, 35);
+		cesped.setBounds(72, 207, 125, 35);
 		cesped.setIcon(new ImageIcon(PokedexView.class.getResource("/img/cesped.png")));
 		panelFondoPokemon.add(cesped);
+		
+		imgfondo = new JLabel("");
+		imgfondo.setBounds(0, -205, 515, 502);
+		panelFondoPokemon.add(imgfondo);
+		imgfondo.setIcon(new ImageIcon(PokedexView.class.getResource("/img/fondo.jpg")));
+
 		
 		btnAnterior = new JButton("<");
 		btnAnterior.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -287,11 +294,11 @@ public class PokedexView {
 		panelOpciones = new JPanel();
 		panelOpciones.setBounds(10, 365, 632, 73);
 		frmPokedex.getContentPane().add(panelOpciones);
-		panelOpciones.setBackground(Color.WHITE);
+		panelOpciones.setBackground(new Color(127, 172, 113));
 		panelOpciones.setLayout(null);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBackground(new Color(0, 51, 204));
+		btnBorrar.setBackground(new Color(177, 228, 107));
 		btnBorrar.setForeground(new Color(255, 255, 255));
 		btnBorrar.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnBorrar.setBounds(60, 11, 120, 40);
@@ -299,7 +306,7 @@ public class PokedexView {
 		panelOpciones.add(btnBorrar);
 		
 		btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBackground(new Color(0, 51, 204));
+		btnActualizar.setBackground(new Color(177, 228, 107));
 		btnActualizar.setForeground(new Color(255, 255, 255));
 		btnActualizar.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnActualizar.setBounds(242, 11, 150, 40);
@@ -307,7 +314,7 @@ public class PokedexView {
 		panelOpciones.add(btnActualizar);
 		
 		btnCrear = new JButton("Crear");
-		btnCrear.setBackground(new Color(0, 51, 204));
+		btnCrear.setBackground(new Color(177, 228, 107));
 		btnCrear.setForeground(new Color(255, 255, 255));
 		btnCrear.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnCrear.setBounds(457, 11, 120, 40);
@@ -320,7 +327,7 @@ public class PokedexView {
 		btnAceptarAct.setForeground(new Color(255, 255, 255));
 		btnAceptarAct.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnAceptarAct.setBorder(null);
-		btnAceptarAct.setBackground(new Color(0, 51, 204));
+		btnAceptarAct.setBackground(new Color(177, 228, 107));
 		
 		btnCancelarAct = new JButton("Cancelar");
 		btnCancelarAct.setBounds(354, 11, 131, 40);
@@ -328,7 +335,7 @@ public class PokedexView {
 		btnCancelarAct.setForeground(new Color(255, 255, 255));
 		btnCancelarAct.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnCancelarAct.setBorder(null);
-		btnCancelarAct.setBackground(new Color(0, 51, 204));
+		btnCancelarAct.setBackground(new Color(177, 228, 107));
 		
 		fillTipos();
 		

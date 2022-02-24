@@ -45,6 +45,7 @@ public class RegistroView {
 	private JPanel panel_5;
 	private JPanel panel_6;
 	private JPanel panel_7;
+	private JLabel imgfondo;
 
 
 
@@ -122,7 +123,7 @@ public class RegistroView {
 		frmRegistro.getContentPane().add(lblPokedex);
 		
 				btnVolver = new JButton("Volver");
-				btnVolver.setBounds(75, 76, 89, 30);
+				btnVolver.setBounds(65, 65, 85, 25);
 				frmRegistro.getContentPane().add(btnVolver);
 				btnVolver.setBackground(new Color(255, 255, 255));
 				btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
@@ -166,6 +167,11 @@ public class RegistroView {
 				panel_7.setBackground(Color.RED);
 				panel_7.setBounds(53, 403, 535, 27);
 				frmRegistro.getContentPane().add(panel_7);
+				
+				imgfondo = new JLabel("");
+				imgfondo.setBounds(53, 49, 535, 358);
+				imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
+				frmRegistro.getContentPane().add(imgfondo);
 	}
 
 	/**

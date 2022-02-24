@@ -46,6 +46,7 @@ public class LoginView {
 	private JPanel panelGrisDeco2;
 	private JPanel panelGrisDeco3;
 	private JPanel panelGrisDeco4;
+	private JLabel imgfondo;
 
 	/**
 	 * Create the application.
@@ -161,6 +162,11 @@ public class LoginView {
 		lblPokedex.setIcon(new ImageIcon(LoginView.class.getResource("/img/pokemon.png")));
 		frmPokedexMen.getContentPane().add(lblPokedex);
 		
+		imgfondo = new JLabel("");
+		imgfondo.setBounds(53, 51, 541, 347);
+		frmPokedexMen.getContentPane().add(imgfondo);
+		imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
+
 
 		
 
