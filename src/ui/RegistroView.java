@@ -1,7 +1,5 @@
 package ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,12 +8,10 @@ import javax.swing.JTextField;
 import dao.UsersDAO;
 import models.Usuario;
 
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JPanel;
@@ -120,56 +116,56 @@ public class RegistroView {
 		lblPokedex.setBounds(198, 91, 256, 104);
 		frmRegistro.getContentPane().add(lblPokedex);
 		
-			btnVolver = new JButton("Volver");
-			btnVolver.setBounds(65, 65, 85, 25);
-			frmRegistro.getContentPane().add(btnVolver);
-			btnVolver.setBackground(new Color(255, 255, 255));
-			btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
-				
-			panel = new JPanel();
-			panel.setBackground(Color.DARK_GRAY);
-			panel.setBounds(0, 0, 639, 27);
-			frmRegistro.getContentPane().add(panel);
+		btnVolver = new JButton("Volver");
+		btnVolver.setBounds(65, 65, 85, 25);
+		frmRegistro.getContentPane().add(btnVolver);
+		btnVolver.setBackground(new Color(255, 255, 255));
+		btnVolver.setFont(new Font("Verdana", Font.BOLD, 14));
 			
-			panel_1 = new JPanel();
-			panel_1.setBackground(Color.DARK_GRAY);
-			panel_1.setBounds(0, 429, 639, 27);
-			frmRegistro.getContentPane().add(panel_1);
-			
-			panel_2 = new JPanel();
-			panel_2.setBackground(Color.DARK_GRAY);
-			panel_2.setBounds(0, 0, 27, 455);
-			frmRegistro.getContentPane().add(panel_2);
-			
-			panel_3 = new JPanel();
-			panel_3.setBackground(Color.DARK_GRAY);
-			panel_3.setBounds(612, 0, 27, 455);
-			frmRegistro.getContentPane().add(panel_3);
-			
-			panel_4 = new JPanel();
-			panel_4.setBackground(Color.RED);
-			panel_4.setBounds(26, 25, 27, 405);
-			frmRegistro.getContentPane().add(panel_4);
-			
-			panel_5 = new JPanel();
-			panel_5.setBackground(Color.RED);
-			panel_5.setBounds(585, 27, 27, 405);
-			frmRegistro.getContentPane().add(panel_5);
-			
-			panel_6 = new JPanel();
-			panel_6.setBackground(Color.RED);
-			panel_6.setBounds(53, 25, 535, 27);
-			frmRegistro.getContentPane().add(panel_6);
-			
-			panel_7 = new JPanel();
-			panel_7.setBackground(Color.RED);
-			panel_7.setBounds(53, 403, 535, 27);
-			frmRegistro.getContentPane().add(panel_7);
-			
-			imgfondo = new JLabel("");
-			imgfondo.setBounds(53, 49, 535, 358);
-			imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
-			frmRegistro.getContentPane().add(imgfondo);
+		panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 639, 27);
+		frmRegistro.getContentPane().add(panel);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
+		panel_1.setBounds(0, 429, 639, 27);
+		frmRegistro.getContentPane().add(panel_1);
+		
+		panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
+		panel_2.setBounds(0, 0, 27, 455);
+		frmRegistro.getContentPane().add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_3.setBackground(Color.DARK_GRAY);
+		panel_3.setBounds(612, 0, 27, 455);
+		frmRegistro.getContentPane().add(panel_3);
+		
+		panel_4 = new JPanel();
+		panel_4.setBackground(Color.RED);
+		panel_4.setBounds(26, 25, 27, 405);
+		frmRegistro.getContentPane().add(panel_4);
+		
+		panel_5 = new JPanel();
+		panel_5.setBackground(Color.RED);
+		panel_5.setBounds(585, 27, 27, 405);
+		frmRegistro.getContentPane().add(panel_5);
+		
+		panel_6 = new JPanel();
+		panel_6.setBackground(Color.RED);
+		panel_6.setBounds(53, 25, 535, 27);
+		frmRegistro.getContentPane().add(panel_6);
+		
+		panel_7 = new JPanel();
+		panel_7.setBackground(Color.RED);
+		panel_7.setBounds(53, 403, 535, 27);
+		frmRegistro.getContentPane().add(panel_7);
+		
+		imgfondo = new JLabel("");
+		imgfondo.setBounds(53, 49, 535, 358);
+		imgfondo.setIcon(new ImageIcon(LoginView.class.getResource("/img/fondo.jpg")));
+		frmRegistro.getContentPane().add(imgfondo);
 	}
 
 	/**

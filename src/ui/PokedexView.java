@@ -1,19 +1,13 @@
 package ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
-import javax.swing.Icon;
-import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import dao.PokemonDAO;
 import dao.TiposDAO;
@@ -42,7 +36,6 @@ public class PokedexView {
 	private JButton btnAnterior;
 	private JButton btnSiguiente;
 	private JLabel lblPokemonNumber;
-	private JLabel lblImagenPokemon;
 	private JLabel lblPokemonImg;
 	private JPanel panelOpciones;
 	private JButton btnBorrar;
@@ -57,7 +50,6 @@ public class PokedexView {
 	private JTextField lblDatoDeCategoria;
 	private JLabel lbltxtHabilidad;
 	private JTextField lblDatoDeHabilidad;
-	private JLabel lblConfig;
 	private JFrame frmLoginView;
 	private String username;
 	private int pagina;
@@ -69,7 +61,6 @@ public class PokedexView {
 	private JLabel lblTipo2;
 	private JLabel lblDatoTipo1;
 	private JLabel lblDatoTipo2;
-	private JLabel lblPokedex;
 	private JComboBox<String> cbTipo1Act;
 	private JComboBox<String> cbTipo2Act;
 	private ArrayList<Tipos> tipos1;

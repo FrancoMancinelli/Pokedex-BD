@@ -56,6 +56,7 @@ public class ConfigView {
 	private int modo;
 	private JPanel panelSuperior;
 	private UsersDAO userDAO;
+	@SuppressWarnings("unused")
 	private Usuario usuario;
 	private int pagina;
 	private JFrame frmLoginView;
@@ -356,19 +357,19 @@ public class ConfigView {
 					frame.dispose();
 					new LoginView();
 				} else {
-					if(modo == 0) {
+					if(modo == 0) { //Si el modo es 0 se entiende como modo Base
 						imgPikaSad.setVisible(false);
 						panelBaseText.setVisible(true);
 						imgfondo3.setVisible(false);
 						panelCambios.setBackground(new Color(240, 240, 240));
-					} else if(modo == 1) {
+					} else if(modo == 1) { //Si el modo es 1 se entiende como modo CambioNombre
 						imgPikaSad.setVisible(false);
 						panelNombre.setVisible(true);
 						btnConfirmar.setVisible(true);
 						btnCancelar.setVisible(true);
 						imgfondo3.setVisible(true);
 						panelCambios.setBackground(new Color(127, 172, 113));
-					} else if (modo == 2) {
+					} else if (modo == 2) { //Si el modo es 2 se entiende como modo CambioContraseña
 						imgPikaSad.setVisible(false);
 						panelContraseña.setVisible(true);
 						btnConfirmar.setVisible(true);
@@ -456,12 +457,12 @@ public class ConfigView {
 	 */
 	public void confirmarCambioNombre() {
 		String passwd = new String (pwActualPassName.getPassword());
-		if(!tfNombreNuevo.getText().isEmpty() && !passwd.isEmpty()) {
-			if(!tfNombreNuevo.getText().equals(tfNombreActual.getText())) {
-				if(!userDAO.usuariosExistente(tfNombreNuevo.getText())) {
-					if(tfNombreNuevo.getText().length() >= 4 && tfNombreNuevo.getText().length() <= 12) {
-						if(!checkSpaces(tfNombreNuevo.getText())) {
-							if(passwd.equals(this.password)) {
+		if(!tfNombreNuevo.getText().isEmpty() && !passwd.isEmpty()) { //Si los campos a rellenar NO estan vacios...
+			if(!tfNombreNuevo.getText().equals(tfNombreActual.getText())) { //Si el nombre nuevo NO es igual al anterior...
+				if(!userDAO.usuariosExistente(tfNombreNuevo.getText())) { //Si el nuevo nombre de usuario NO está utilizado...
+					if(tfNombreNuevo.getText().length() >= 4 && tfNombreNuevo.getText().length() <= 12) { //Si el nombre cumple con la longitud requerida...
+						if(!checkSpaces(tfNombreNuevo.getText())) { //Si el nuevo nombre no contiene espacios...
+							if(passwd.equals(this.password)) { //Si la contraseña de confirmación coincide con la contraseña actual del usuario...
 								int confirmar = JOptionPane.showConfirmDialog(btnBorrarCuenta,
 										"¿Estás seguro de que deseas guardar los cambios?");
 								if (confirmar == 0) { // Confirma borrar

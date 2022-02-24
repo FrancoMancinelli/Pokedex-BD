@@ -1,10 +1,6 @@
 package mainapp;
 
-import javax.swing.ImageIcon;
-
-import models.Pokemon;
 import ui.LoginView;
-
 
 public class mainapp {
 
@@ -12,7 +8,6 @@ public class mainapp {
 		
 		//Inicializar un LoginView
 		new LoginView();
-
 	}
 
 }

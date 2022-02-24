@@ -2,7 +2,6 @@ package models;
 
 import javax.swing.ImageIcon;
 
-
 public class Pokemon {
 
 	// ~~~ ATRIBUTOS
@@ -16,10 +15,8 @@ public class Pokemon {
 	protected String imagen2;
 	protected Tipos tipo1;
 	protected Tipos tipo2;
-
 	
 	// ~~~ CONSTRUCTORES
-	
 	/**
 	 * Construye un Pokemon sin pasarle como parametro una imagen
 	 * ya que esta se pondrá por default
@@ -90,66 +87,53 @@ public class Pokemon {
 		return numero;
 	}
 
-
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public double getAltura() {
 		return altura;
 	}
 
-
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-
 
 	public double getPeso() {
 		return peso;
 	}
 
-
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-
 
 	public String getCategoria() {
 		return categoria;
 	}
 
-
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-
 
 	public String getHabilidad() {
 		return habilidad;
 	}
 
-
 	public void setHabilidad(String habilidad) {
 		this.habilidad = habilidad;
 	}
 
-
 	public ImageIcon getImagen() {
 		return imagen;
 	}
-
 
 	public void setImagen(ImageIcon imagen) {
 		this.imagen = imagen;

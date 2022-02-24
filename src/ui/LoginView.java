@@ -1,9 +1,5 @@
 package ui;
 
-import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +22,7 @@ import models.Usuario;
 
 public class LoginView {
 
+	@SuppressWarnings("unused")
 	private JFrame frame;
 	private JFrame frmPokedexMen;
 	private JLabel lblNomUsuario;
@@ -33,9 +30,7 @@ public class LoginView {
 	private JLabel lblPassword;
 	private JPasswordField pfilePassword;
 	private JButton btnEntrar;
-	private Component lblNewLabel;
 	private JButton btnRegistrarse;
-	private JLabel imgLineaRoja;
 	private JLabel lblPokedex;
 	private UsersDAO usuarioDAO;
 	private JPanel panelRojoDeco1;
