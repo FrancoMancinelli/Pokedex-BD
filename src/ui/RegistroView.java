@@ -48,8 +48,6 @@ public class RegistroView {
 	private JLabel imgfondo;
 
 
-
-
 	/**
 	 * Create the application.
 	 */
