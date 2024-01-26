@@ -8,7 +8,7 @@ import java.sql.Statement;
 public abstract class AbstractDAO {
 	protected final String DB_URL = "jdbc:mysql://localhost/pokedex";
 	protected final String USER = "fran";
-	protected final String PASS = "#IltwwAmh3127";
+	protected final String PASS = "test";
 	
 	protected Connection conn;
 	protected Statement stmt;
